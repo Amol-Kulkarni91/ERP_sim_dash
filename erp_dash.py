@@ -16,9 +16,10 @@ if file is not None:
     df = pd.read_excel(file)
     df['Profit'] = df['Value'] - df['Cost']
     
-    selection = alt.selection_multi(fields=['Material description'], bind='legend')
+    
     def dem_product(data_f):
         st.subheader('Demand by Region')
+        selection = alt.selection_multi(fields=['Material description'], bind='legend')
         chart = alt.Chart(data_f).mark_bar().encode(x = alt.X('Material description:N', title = 'Products'), 
                                 y = alt.Y('sum(Qty):Q', title = 'Demand'), column = 'Area:N', 
                                 color = 'Material description:N', tooltip = ['sum(Qty):Q'],
@@ -27,7 +28,7 @@ if file is not None:
         return chart
 
     def profit_product(data_f):
-        # selection = alt.selection_multi(fields=['Material description'], bind='legend')
+        selection = alt.selection_multi(fields=['Material description'], bind='legend')
         st.subheader('Profit by Region')
         chart_2 = alt.Chart(data_f).mark_line().encode(x = 'Day:O', 
                                  y = alt.Y('sum(Profit):Q', title = 'Profit by Product'), column = 'Area:N',
