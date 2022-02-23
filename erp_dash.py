@@ -6,6 +6,8 @@ import altair as alt
 image = Image.open('Pennstate logo.png')
 st.image(image, use_column_width = True)
 
+st.set_page_config(layout="wide")
+
 # Set title
 st.title('ERP Simulation Dashboard')
 
