@@ -42,19 +42,50 @@ if file is not None:
     def round_first(data_f):
         st.subheader('Inventory')
         sorted_df = data_f.sort_values(by='Day')
-        sorted_df = sorted_df.groupby(['Material description', 'Day'])['Qty'].sum().reset_index()
+        sorted_df = sorted_df.groupby(['Round', 'Material description', 'Day'])['Qty'].sum().reset_index()
         sp5 = 1000
         lsp5 = 1000
         p5 = 1000
         sp1 = 1000
         lsp1 = 1000
         p1 = 1000
-        inventory = {'500mL Spritz': [1000]}
-        inventory_1 = {'500mL Lemon Spritz' : [1000]}
-        inventory_2 = {'500mL ClearPure' : [1000]}
-        inventory_3 = {'1L Spritz' : [1000]} 
-        inventory_4 = {'1L Lemon Spritz' : [1000]}
-        inventory_5 = {'1L ClearPure': [1000]}
+        if option == 'Round 1':
+            inventory = {'500mL Spritz': [sp5]}
+            inventory_1 = {'500mL Lemon Spritz' : [lsp5]}
+            inventory_2 = {'500mL ClearPure' : [p5]}
+            inventory_3 = {'1L Spritz' : [sp1]} 
+            inventory_4 = {'1L Lemon Spritz' : [lsp1]}
+            inventory_5 = {'1L ClearPure': [p1]}
+            
+        elif option == 'Round 2':
+            sp5 = sorted_df.loc[(sorted_df.Round == 1) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL Spritz')]['Qty']
+            lsp5 = sorted_df.loc[(sorted_df.Round == 1) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL Lemon Spritz')]['Qty']
+            p5 = sorted_df.loc[(sorted_df.Round == 1) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL ClearPure')]['Qty']
+            sp1 = sorted_df.loc[(sorted_df.Round == 1) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '1L Spritz')]['Qty']
+            lsp1 = sorted_df.loc[(sorted_df.Round == 1) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '1L Lemon Spritz')]['Qty']
+            p1 = sorted_df.loc[(sorted_df.Round == 1) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '1L ClearPure')]['Qty']
+            inventory = {'500mL Spritz': [sp5]}
+            inventory_1 = {'500mL Lemon Spritz' : [lsp5]}
+            inventory_2 = {'500mL ClearPure' : [p5]}
+            inventory_3 = {'1L Spritz' : [sp1]} 
+            inventory_4 = {'1L Lemon Spritz' : [lsp1]}
+            inventory_5 = {'1L ClearPure': [p1]}
+            
+        else:
+            sp5 = sorted_df.loc[(sorted_df.Round == 2) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL Spritz')]['Qty']
+            lsp5 = sorted_df.loc[(sorted_df.Round == 2) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL Lemon Spritz')]['Qty']
+            p5 = sorted_df.loc[(sorted_df.Round == 2) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL ClearPure')]['Qty']
+            sp1 = sorted_df.loc[(sorted_df.Round == 2) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '1L Spritz')]['Qty']
+            lsp1 = sorted_df.loc[(sorted_df.Round == 2) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '1L Lemon Spritz')]['Qty']
+            p1 = sorted_df.loc[(sorted_df.Round == 2) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '1L ClearPure')]['Qty']
+            inventory = {'500mL Spritz': [sp5]}
+            inventory_1 = {'500mL Lemon Spritz' : [lsp5]}
+            inventory_2 = {'500mL ClearPure' : [p5]}
+            inventory_3 = {'1L Spritz' : [sp1]} 
+            inventory_4 = {'1L Lemon Spritz' : [lsp1]}
+            inventory_5 = {'1L ClearPure': [p1]}
+            
+        
         for i in sorted_df.iterrows():
             if (i[1]['Material description'] == '500mL Spritz') and (i[1]['Day'] == 1):
                 sp5 = sp5 - i[1]['Qty']
