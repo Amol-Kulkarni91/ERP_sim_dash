@@ -40,20 +40,6 @@ if file is not None:
     
     re_ord = st.radio("Did you re-order?", ("Yes", "No"))
 
-    if re_ord == 'Yes':
-        ml_5_Spritz = st.sidebar.number_input('Quantity of 500mL Spritz Reordered', value = int, 
-        min_value = 1, step = 1)
-        ml_5_lemSpritz = st.sidebar.number_input('Quantity of 500mL Lemon Spritz Reordered', value = int, 
-        min_value = 1, step = 1)
-        ml_5_pure = st.sidebar.number_input('Quantity of 500mL ClearPure Reordered', value = int, 
-        min_value = 1, step = 1)
-        l_1_Spritz = st.sidebar.number_input('Quantity of 1L Spritz Reordered', value = int, 
-        min_value = 1, step = 1)
-        l_1_lemSpritz = st.sidebar.number_input('Quantity of 1L Lemon Spritz Reordered', value = int, 
-        min_value = 1, step = 1)
-        l_1_pure = st.sidebar.number_input('Quantity of 1L ClearPure Reordered', value = int, 
-        min_value = 1, step = 1)
-
 
     st.altair_chart(dem_product(df), use_container_width = False)
     st.altair_chart(profit_product(df), use_container_width = False)
