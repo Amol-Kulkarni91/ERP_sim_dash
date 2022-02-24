@@ -37,6 +37,77 @@ if file is not None:
                                 selection).properties(width = 200, height = 200)
         return chart_2
     
+    def round_first(re_ord, data_f):
+        sort_data_f = data_f.sort_values(by='Day')
+        spritz_5 = [1000]
+        lemspritz_5 = [1000]
+        pure_5 = [1000]
+        spritz_1 = [1000]
+        lemspritz_1 = [1000]
+        pure_1 = [1000]
+        j = 0 
+        for i in sort_data_f.iterrows():
+            if (i[1]['Material description'] == '500mL Spritz') and (i[1]['Day'] == 1):
+                spritz_5.append(spritz_5[j] - i[1]['Qty'])
+                j += 1
+            else:
+                spritz_5.append(spritz_5[j] - i[1]['Qty'])
+                j+= 1
+                               
+        j = 0
+        for i in sort_data_f.iterrows():
+            if (i[1]['Material description'] == '500mL Lemon Spritz') and (i[1]['Day'] == 1):
+                lemspritz_5.append(lemspritz_5[j] - i[1]['Qty'])
+                j += 1
+            else:
+                lemspritz_5.append(lemspritz_5[j] - i[1]['Qty'])
+                j += 1
+        j = 0
+        for i in sort_data_f.iterrows():
+            if (i[1]['Material description'] == '500mL ClearPure') and (i[1]['Day'] == 1):
+                pure_5.append(pure_5[j] - i[1]['Qty'])
+                j += 1
+            else:
+                pure_5.append(pure_5[j] - i[1]['Qty'])
+                j+=1
+                
+        j = 0
+        for i in sort_data_f.iterrows():
+            if (i[1]['Material description'] == '1L Spritz') and (i[1]['Day'] == 1):
+                spritz_1.append(spritz_1[j] - i[1]['Qty'])
+                j += 1
+            else:
+                spritz_1.append(spritz_1[j] - i[1]['Qty'])
+                j+=1
+                
+       j = 0
+        for i in sort_data_f.iterrows():
+            if (i[1]['Material description'] == '1L Lemon Spritz') and (i[1]['Day'] == 1):
+                lemspritz_1.append(lemspritz_1[j] - i[1]['Qty'])
+                j += 1
+            else:
+                lemspritz_1.append(lemspritz_1[j] - i[1]['Qty'])
+                j+=1         
+                
+       j = 0
+        for i in sort_data_f.iterrows():
+            if (i[1]['Material description'] == '1L ClearPure') and (i[1]['Day'] == 1):
+                pure_1.append(pure_1[j] - i[1]['Qty'])
+                j += 1
+            else:
+                pure_1.append(pure_1[j] - i[1]['Qty'])
+                j+=1        
+                
+        
+        if re_ord == 'Yes':
+            
+        else:
+            chart_data = pd.dataframe([spritz_5, lemspritz_5, pure_5, spritz_1, lemspritz_1, pure_1]).transpose()
+            chart_data.columns = ['500mL Spritz', '500mL Lemon Spritz', '500mL ClearPure', '1L Spritz', '1L Lemon Spritz', '1L ClearPure']
+            
+            
+        return chart_data
+    
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"))
     
     if re_ord == "Yes":
@@ -58,6 +129,7 @@ if file is not None:
         day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 20, step = 1)
         
     else:
+        st.line_chart(round_first('No', df))
         st.altair_chart(dem_product(df), use_container_width = False)
         st.altair_chart(profit_product(df), use_container_width = False)
         
