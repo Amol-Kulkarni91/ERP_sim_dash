@@ -29,7 +29,7 @@ if file is not None:
         selection).properties(width = 200, height = 200)
         return chart
 
-    def profit_product(option, data_f):
+    def profit_product(data_f):
         selection = alt.selection_multi(fields=['Material description'], bind='legend')
         st.subheader('Profit by Region')
         chart_2 = alt.Chart(data_f).mark_line().encode(x = 'Day:O', 
@@ -39,7 +39,7 @@ if file is not None:
                                 selection).properties(width = 200, height = 200)
         return chart_2
     
-    def round_first(data_f):
+    def round_first(opt, data_f):
         st.subheader('Inventory')
         sorted_df = data_f.sort_values(by='Day')
         sorted_df = sorted_df.groupby(['Round', 'Material description', 'Day'])['Qty'].sum().reset_index()
@@ -49,7 +49,7 @@ if file is not None:
         sp1 = 1000
         lsp1 = 1000
         p1 = 1000
-        if option == 'Round 1':
+        if opt == 'Round 1':
             inventory = {'500mL Spritz': [sp5]}
             inventory_1 = {'500mL Lemon Spritz' : [lsp5]}
             inventory_2 = {'500mL ClearPure' : [p5]}
@@ -57,7 +57,7 @@ if file is not None:
             inventory_4 = {'1L Lemon Spritz' : [lsp1]}
             inventory_5 = {'1L ClearPure': [p1]}
             
-        elif option == 'Round 2':
+        elif opt == 'Round 2':
             sp5 = sorted_df.loc[(sorted_df.Round == 1) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL Spritz')]['Qty']
             lsp5 = sorted_df.loc[(sorted_df.Round == 1) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL Lemon Spritz')]['Qty']
             p5 = sorted_df.loc[(sorted_df.Round == 1) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL ClearPure')]['Qty']
