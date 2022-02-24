@@ -127,7 +127,7 @@ if file is not None:
         new_data.loc[day_5_lemspritz, '500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz, '500mL Lemon Spritz'] + ml_5_lemspritz
         new_data.loc[day_5_pure, '500mL ClearPure'] = new_data.loc[day_5_pure, '500mL ClearPure'] + ml_5_pure
         new_data.loc[day_1_spritz, '1L Spritz'] = new_data.loc[day_1_spritz, '1L Spritz'] + l_1_spritz
-        new_data.loc[day_1_lemspritz, '1L LemonSpritz'] = new_data.loc[day_1_lemspritz, '1L LemonSpritz'] + l_1_lemspritz
+        new_data.loc[day_1_lemspritz, '1L Lemon Spritz'] = new_data.loc[day_1_lemspritz, '1L Lemon Spritz'] + l_1_lemspritz
         new_data.loc[day_1_pure, '1L ClearPure'] = new_data.loc[day_1_pure, '1L ClearPure'] + l_1_pure
         
         st.line_chart(new_data)
