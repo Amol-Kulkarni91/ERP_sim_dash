@@ -140,12 +140,12 @@ if file is not None:
             new_data.loc[day_1_pure, '1L ClearPure'] = new_data.loc[day_1_pure, '1L ClearPure'] + (l_1_pure*12)
 
             st.line_chart(new_data)
-            st.altair_chart(dem_product(df), use_container_width = True)
-            st.altair_chart(profit_product(df), use_container_width = True)
+            st.altair_chart(dem_product(df))
+            st.altair_chart(profit_product(df))
         else:
             st.line_chart(round_first(df))
-            st.altair_chart(dem_product(df), use_container_width = True)
-            st.altair_chart(profit_product(df), use_container_width = True)
+            st.altair_chart(dem_product(df))
+            st.altair_chart(profit_product(df))
             
     elif option == 'Round 2':
         df_1 = df.loc[df['Round'] == 1]
