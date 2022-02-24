@@ -80,7 +80,7 @@ if file is not None:
                 spritz_1.append(spritz_1[j] - i[1]['Qty'])
                 j+=1
                 
-       j = 0
+        j = 0
         for i in sort_data_f.iterrows():
             if (i[1]['Material description'] == '1L Lemon Spritz') and (i[1]['Day'] == 1):
                 lemspritz_1.append(lemspritz_1[j] - i[1]['Qty'])
@@ -89,7 +89,7 @@ if file is not None:
                 lemspritz_1.append(lemspritz_1[j] - i[1]['Qty'])
                 j+=1         
                 
-       j = 0
+        j = 0
         for i in sort_data_f.iterrows():
             if (i[1]['Material description'] == '1L ClearPure') and (i[1]['Day'] == 1):
                 pure_1.append(pure_1[j] - i[1]['Qty'])
