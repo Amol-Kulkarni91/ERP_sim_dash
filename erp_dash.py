@@ -137,7 +137,7 @@ if file is not None:
             
         return chart_data
     
-    re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"))
+    re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
     
     if re_ord == "Yes":
         st.sidebar.subheader('Reorder Quantity Information')
