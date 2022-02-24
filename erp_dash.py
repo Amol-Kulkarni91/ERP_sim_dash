@@ -113,7 +113,7 @@ if file is not None:
     
     if option == 'Round 1':
         df = df.loc[df['Round'] == 1]
-    elif option == 'Round 2:
+    elif option == 'Round 2':
         df = df.loc[df['Round'] == 2]
     else:
         df = df.loc[df['Round'] == 3]
