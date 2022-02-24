@@ -17,6 +17,13 @@ if file is not None:
     df['Profit'] = df['Value'] - df['Cost']
     
     
+    def list_neg(ls):
+        for i in range(len(ls)):
+            if ls[i] < 0:
+                ls[i] = 0
+        
+        return ls
+    
     def dem_product(data_f):
         st.subheader('Demand by Region')
         selection = alt.selection_multi(fields=['Material description'], bind='legend')
@@ -98,6 +105,12 @@ if file is not None:
                 pure_1.append(pure_1[j] - i[1]['Qty'])
                 j+=1        
                 
+        spritz_5 = list_neg(spritz_5)
+        lemspritz_5 = list_neg(lemspritz_5)
+        pure_5 = list_neg(pure_5)
+        spritz_1 = list_neg(spritz_1)
+        lemspritz_1 = list_neg(lemspritz_1)
+        pure_1 = list_neg(pure_1)
         
         if re_ord == 'No':
             chart_data = pd.DataFrame([spritz_5, lemspritz_5, pure_5, spritz_1, lemspritz_1, pure_1]).transpose()
