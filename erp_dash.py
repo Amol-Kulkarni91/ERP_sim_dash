@@ -37,6 +37,8 @@ if file is not None:
                                  opacity=alt.condition(selection, alt.value(1), alt.value(0.2))).add_selection(
                                 selection).properties(width = 200, height = 200)
         return chart_2
+    
+    re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"))
 
     st.altair_chart(dem_product(df), use_container_width = False)
     st.altair_chart(profit_product(df), use_container_width = False)
