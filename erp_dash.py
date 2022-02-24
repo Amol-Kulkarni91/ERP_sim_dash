@@ -54,7 +54,7 @@ if file is not None:
         l_1_pure = st.sidebar.number_input('Quantity of 1L ClearPure Reordered', value = int, 
         min_value = 1, step = 1)
 
-    else:
-        st.altair_chart(dem_product(df), use_container_width = False)
-        st.altair_chart(profit_product(df), use_container_width = False)
+
+    st.altair_chart(dem_product(df), use_container_width = False)
+    st.altair_chart(profit_product(df), use_container_width = False)
 
