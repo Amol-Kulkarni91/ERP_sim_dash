@@ -122,6 +122,20 @@ if file is not None:
         day_1_lemspritz = st.sidebar.number_input('Scheduled Delivery of 1L Lemon Spritz', min_value = 1, max_value = 20, step = 1)
         day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 20, step = 1)
         
+        new_data = roundfirst(df)
+        new_data.at[day_5_spritz, '500mL Spritz'] = new_data.at[day_5_spritz, '500mL Spritz'] + ml_5_spritz
+        new_data.at[day_5_lemspritz, '500mL Spritz'] = new_data.at[day_5_lemspritz, '500mL Spritz'] + ml_5_lemspritz
+        new_data.at[day_5_pure, '500mL Spritz'] = new_data.at[day_5_pure, '500mL Spritz'] + ml_5_pure
+        new_data.at[day_1_spritz, '500mL Spritz'] = new_data.at[day_1_spritz, '500mL Spritz'] + l_1_spritz
+        new_data.at[day_1_lemspritz, '500mL Spritz'] = new_data.at[day_1_lemspritz, '500mL Spritz'] + l_1_lemspritz
+        new_data.at[day_1_pure, '500mL Spritz'] = new_data.at[day_1_pure, '500mL Spritz'] + l_1_pure
+        
+        st.line_chart(new_data)
+        st.altair_chart(dem_product(df), use_container_width = False)
+        st.altair_chart(profit_product(df), use_container_width = False)
+        
+        
+        
     else:
         st.line_chart(round_first(df))
         st.altair_chart(dem_product(df), use_container_width = False)
