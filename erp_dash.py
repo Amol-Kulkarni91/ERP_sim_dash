@@ -9,8 +9,7 @@ st.image(image, use_column_width = True)
 
 # Set title
 st.title('ERP Simulation Dashboard')
-
-file = st.sidebar.file_uploader("Please choose a file to upload")
+file = st.sidebar.file_uploader("Please upload the sales order report")
 
 if file is not None:
     st.sidebar.success('File uploaded Succesfully')
@@ -37,7 +36,7 @@ if file is not None:
                                  opacity=alt.condition(selection, alt.value(1), alt.value(0.2))).add_selection(
                                 selection).properties(width = 200, height = 200)
         return chart_2
-    
+    st.sidebar.subheader('Reorder Quantity Information")
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"))
     
     if re_ord == "Yes":
