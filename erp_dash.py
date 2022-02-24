@@ -50,12 +50,12 @@ if file is not None:
         lsp1 = 1000
         p1 = 1000
         
-        inventory = {'500mL Spritz': [sp5]}
-        inventory_1 = {'500mL Lemon Spritz' : [lsp5]}
-        inventory_2 = {'500mL ClearPure' : [p5]}
-        inventory_3 = {'1L Spritz' : [sp1]} 
-        inventory_4 = {'1L Lemon Spritz' : [lsp1]}
-        inventory_5 = {'1L ClearPure': [p1]}
+        inventory = {'500mL Spritz': [1000]}
+        inventory_1 = {'500mL Lemon Spritz' : [1000]}
+        inventory_2 = {'500mL ClearPure' : [1000]}
+        inventory_3 = {'1L Spritz' : [1000]} 
+        inventory_4 = {'1L Lemon Spritz' : [1000]}
+        inventory_5 = {'1L ClearPure': [1000]}
            
             
         
