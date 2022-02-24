@@ -11,7 +11,7 @@ st.image(image, use_column_width = True)
 st.title('ERP Simulation Dashboard')
 file = st.sidebar.file_uploader("Please upload the sales order report")
 
-option = st.selectbox('Choose Round',('Round 1', 'Round 2', 'Round 3'))
+
 
 if file is not None:
     st.sidebar.success('File uploaded Succesfully')
@@ -29,7 +29,7 @@ if file is not None:
         selection).properties(width = 200, height = 200)
         return chart
 
-    def profit_product(data_f):
+    def profit_product(option, data_f):
         selection = alt.selection_multi(fields=['Material description'], bind='legend')
         st.subheader('Profit by Region')
         chart_2 = alt.Chart(data_f).mark_line().encode(x = 'Day:O', 
@@ -138,6 +138,7 @@ if file is not None:
         return chart_data
     
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
+    option = st.selectbox('Choose Round',('Round 1', 'Round 2', 'Round 3'))
     
     if re_ord == "Yes":
         st.sidebar.subheader('Reorder Quantity Information')
@@ -157,7 +158,7 @@ if file is not None:
         day_1_lemspritz = st.sidebar.number_input('Scheduled Delivery of 1L Lemon Spritz', min_value = 1, max_value = 20, step = 1)
         day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 20, step = 1)
         
-        new_data = round_first(df)
+        new_data = round_first(option, df)
         new_data.loc[day_5_spritz, '500mL Spritz'] = new_data.loc[day_5_spritz, '500mL Spritz'] + (ml_5_spritz*24)
         new_data.loc[day_5_lemspritz, '500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz, '500mL Lemon Spritz'] + (ml_5_lemspritz*24)
         new_data.loc[day_5_pure, '500mL ClearPure'] = new_data.loc[day_5_pure, '500mL ClearPure'] + (ml_5_pure*24)
@@ -172,7 +173,7 @@ if file is not None:
         
         
     else:
-        st.line_chart(round_first(df))
+        st.line_chart(round_first(option, df))
         st.altair_chart(dem_product(df), use_container_width = False)
         st.altair_chart(profit_product(df), use_container_width = False)
         
