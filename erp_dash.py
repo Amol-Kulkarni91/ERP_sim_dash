@@ -36,7 +36,7 @@ if file is not None:
                                  opacity=alt.condition(selection, alt.value(1), alt.value(0.2))).add_selection(
                                 selection).properties(width = 200, height = 200)
         return chart_2
-    st.sidebar.subheader('Reorder Quantity Information")
+    st.sidebar.subheader('Reorder Quantity Information')
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"))
     
     if re_ord == "Yes":
