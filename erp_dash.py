@@ -46,6 +46,7 @@ if file is not None:
     
     def round_first(re_ord, data_f):
         sort_data_f = data_f.sort_values(by='Day')
+        sort_data_f = sorted_df.groupby(['Material description', 'Day'])['Qty'].sum().reset_index()
         spritz_5 = [1000]
         lemspritz_5 = [1000]
         pure_5 = [1000]
@@ -115,6 +116,7 @@ if file is not None:
         if re_ord == 'No':
             chart_data = pd.DataFrame([spritz_5, lemspritz_5, pure_5, spritz_1, lemspritz_1, pure_1]).transpose()
             chart_data.columns = ['500mL Spritz', '500mL Lemon Spritz', '500mL ClearPure', '1L Spritz', '1L Lemon Spritz', '1L ClearPure']
+            
             
             
         return chart_data
