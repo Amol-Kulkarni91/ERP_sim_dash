@@ -37,6 +37,24 @@ if file is not None:
                                  opacity=alt.condition(selection, alt.value(1), alt.value(0.2))).add_selection(
                                 selection).properties(width = 200, height = 200)
         return chart_2
+    
+    re_ord = st.sidebar.radio("Did you re-order?", ("Yes", "No"))
 
-    st.altair_chart(dem_product(df), use_container_width = False)
-    st.altair_chart(profit_product(df), use_container_width = False)
+    if re_ord == 'Yes':
+        ml_5_Spritz = st.sidebar.number_input('Quantity of 500mL Spritz Reordered', value = int, 
+        min_value = 1, step = 1)
+        ml_5_lemSpritz = st.sidebar.number_input('Quantity of 500mL Lemon Spritz Reordered', value = int, 
+        min_value = 1, step = 1)
+        ml_5_pure = st.sidebar.number_input('Quantity of 500mL ClearPure Reordered', value = int, 
+        min_value = 1, step = 1)
+        l_1_Spritz = st.sidebar.number_input('Quantity of 1L Spritz Reordered', value = int, 
+        min_value = 1, step = 1)
+        l_1_lemSpritz = st.sidebar.number_input('Quantity of 1L Lemon Spritz Reordered', value = int, 
+        min_value = 1, step = 1)
+        l_1_pure = st.sidebar.number_input('Quantity of 1L ClearPure Reordered', value = int, 
+        min_value = 1, step = 1)
+
+    else:
+        st.altair_chart(dem_product(df), use_container_width = False)
+        st.altair_chart(profit_product(df), use_container_width = False)
+
