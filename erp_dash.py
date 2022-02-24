@@ -17,13 +17,6 @@ if file is not None:
     df['Profit'] = df['Value'] - df['Cost']
     
     
-    def list_neg(ls):
-        for i in range(len(ls)):
-            if ls[i] < 0:
-                ls[i] = 0
-        
-        return ls
-    
     def dem_product(data_f):
         st.subheader('Demand by Region')
         selection = alt.selection_multi(fields=['Material description'], bind='legend')
@@ -44,7 +37,7 @@ if file is not None:
                                 selection).properties(width = 200, height = 200)
         return chart_2
     
-    def round_first(re_ord, data_f):
+    def round_first(data_f):
         sorted_df = data_f.sort_values(by='Day')
         sorted_df = sorted_df.groupby(['Material description', 'Day'])['Qty'].sum().reset_index()
         sp5 = 1000
@@ -104,8 +97,7 @@ if file is not None:
         inventory_4 = pd.DataFrame.from_dict(inventory_4)
         inventory_5 = pd.DataFrame.from_dict(inventory_5)
         
-        if re_ord == 'No':
-            chart_data = pd.concat([inventory,inventory_1, inventory_2, inventory_3, inventory_4, inventory_5], axis = 1).fillna(0)
+        chart_data = pd.concat([inventory,inventory_1, inventory_2, inventory_3, inventory_4, inventory_5], axis = 1).fillna(0)
             
         return chart_data
     
@@ -130,7 +122,7 @@ if file is not None:
         day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 20, step = 1)
         
     else:
-        st.line_chart(round_first('No', df))
+        st.line_chart(round_first(df))
         st.altair_chart(dem_product(df), use_container_width = False)
         st.altair_chart(profit_product(df), use_container_width = False)
         
