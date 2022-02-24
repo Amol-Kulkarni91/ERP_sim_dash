@@ -46,7 +46,7 @@ if file is not None:
     
     def round_first(re_ord, data_f):
         sort_data_f = data_f.sort_values(by='Day')
-        sort_data_f = sorted_dataf.groupby(['Material description', 'Day'])['Qty'].sum().reset_index()
+        sort_data_f = sorted_data_f.groupby(['Material description', 'Day'])['Qty'].sum().reset_index()
         spritz_5 = [1000]
         lemspritz_5 = [1000]
         pure_5 = [1000]
