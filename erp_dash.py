@@ -38,6 +38,7 @@ if file is not None:
         return chart_2
     
     def round_first(data_f):
+        st.subheader('Inventory')
         sorted_df = data_f.sort_values(by='Day')
         sorted_df = sorted_df.groupby(['Material description', 'Day'])['Qty'].sum().reset_index()
         sp5 = 1000
