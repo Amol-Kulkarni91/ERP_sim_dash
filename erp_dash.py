@@ -45,79 +45,67 @@ if file is not None:
         return chart_2
     
     def round_first(re_ord, data_f):
-        sort_data_f = data_f.sort_values(by='Day')
-        sort_data_f = sort_data_f.groupby(['Material description', 'Day'])['Qty'].sum().reset_index()
-        spritz_5 = [1000]
-        lemspritz_5 = [1000]
-        pure_5 = [1000]
-        spritz_1 = [1000]
-        lemspritz_1 = [1000]
-        pure_1 = [1000]
-        j = 0 
-        for i in sort_data_f.iterrows():
+        sorted_df = data_f.sort_values(by='Day')
+        sorted_df = sorted_df.groupby(['Material description', 'Day'])['Qty'].sum().reset_index()
+        sp5 = 1000
+        lsp5 = 1000
+        p5 = 1000
+        sp1 = 1000
+        lsp1 = 1000
+        p1 = 1000
+        inventory = {'500mL Spritz': [1000]}
+        inventory_1 = {'500mL Lemon Spritz' : [1000]}
+        inventory_2 = {'500mL ClearPure' : [1000]}
+        inventory_3 = {'1L Spritz' : [1000]} 
+        inventory_4 = {'1L Lemon Spritz' : [1000]}
+        inventory_5 = {'1L ClearPure': [1000]}
+        for i in sorted_df.iterrows():
             if (i[1]['Material description'] == '500mL Spritz') and (i[1]['Day'] == 1):
-                spritz_5.append(spritz_5[j] - i[1]['Qty'])
-                j += 1
-            else:
-                spritz_5.append(spritz_5[j] - i[1]['Qty'])
-                j+= 1
-                               
-        j = 0
-        for i in sort_data_f.iterrows():
-            if (i[1]['Material description'] == '500mL Lemon Spritz') and (i[1]['Day'] == 1):
-                lemspritz_5.append(lemspritz_5[j] - i[1]['Qty'])
-                j += 1
-            else:
-                lemspritz_5.append(lemspritz_5[j] - i[1]['Qty'])
-                j += 1
-        j = 0
-        for i in sort_data_f.iterrows():
-            if (i[1]['Material description'] == '500mL ClearPure') and (i[1]['Day'] == 1):
-                pure_5.append(pure_5[j] - i[1]['Qty'])
-                j += 1
-            else:
-                pure_5.append(pure_5[j] - i[1]['Qty'])
-                j+=1
-                
-        j = 0
-        for i in sort_data_f.iterrows():
-            if (i[1]['Material description'] == '1L Spritz') and (i[1]['Day'] == 1):
-                spritz_1.append(spritz_1[j] - i[1]['Qty'])
-                j += 1
-            else:
-                spritz_1.append(spritz_1[j] - i[1]['Qty'])
-                j+=1
-                
-        j = 0
-        for i in sort_data_f.iterrows():
-            if (i[1]['Material description'] == '1L Lemon Spritz') and (i[1]['Day'] == 1):
-                lemspritz_1.append(lemspritz_1[j] - i[1]['Qty'])
-                j += 1
-            else:
-                lemspritz_1.append(lemspritz_1[j] - i[1]['Qty'])
-                j+=1         
-                
-        j = 0
-        for i in sort_data_f.iterrows():
-            if (i[1]['Material description'] == '1L ClearPure') and (i[1]['Day'] == 1):
-                pure_1.append(pure_1[j] - i[1]['Qty'])
-                j += 1
-            else:
-                pure_1.append(pure_1[j] - i[1]['Qty'])
-                j+=1        
-                
-        spritz_5 = list_neg(spritz_5)
-        lemspritz_5 = list_neg(lemspritz_5)
-        pure_5 = list_neg(pure_5)
-        spritz_1 = list_neg(spritz_1)
-        lemspritz_1 = list_neg(lemspritz_1)
-        pure_1 = list_neg(pure_1)
+                sp5 = sp5 - i[1]['Qty']
+                inventory['500mL Spritz'].append(sp5)
+            elif (i[1]['Material description'] == '500mL Spritz') and (i[1]['Day'] > 1):
+                sp5 = sp5 -  i[1]['Qty']
+                inventory['500mL Spritz'].append(sp5)
+            elif (i[1]['Material description'] == '500mL Lemon Spritz') and (i[1]['Day'] == 1):
+                lsp5 = lsp5 - i[1]['Qty']
+                inventory_1['500mL Lemon Spritz'].append(lsp5)
+            elif (i[1]['Material description'] == '500mL Lemon Spritz') and (i[1]['Day'] > 1):
+                lsp5 = lsp5 - i[1]['Qty']
+                inventory_1['500mL Lemon Spritz'].append(lsp5)
+            elif (i[1]['Material description'] == '500mL ClearPure') and (i[1]['Day'] == 1):
+                p5 = p5 - i[1]['Qty']
+                inventory_2['500mL ClearPure'].append(p5)
+            elif (i[1]['Material description'] == '500mL ClearPure') and (i[1]['Day'] > 1):
+                p5 = p5 - i[1]['Qty']
+                inventory_2['500mL ClearPure'].append(p5)
+            elif (i[1]['Material description'] == '1L Spritz') and (i[1]['Day'] == 1):
+                sp1 = sp1 - i[1]['Qty']
+                inventory_3['1L Spritz'].append(sp1)
+            elif (i[1]['Material description'] == '1L Spritz') and (i[1]['Day'] > 1):
+                sp1 = sp1 - i[1]['Qty']
+                inventory_3['1L Spritz'].append(sp1)
+            elif (i[1]['Material description'] == '1L Lemon Spritz') and (i[1]['Day'] == 1):
+                lsp1 = lsp1 - i[1]['Qty']
+                inventory_4['1L Lemon Spritz'].append(lsp1)
+            elif (i[1]['Material description'] == '1L Lemon Spritz') and (i[1]['Day'] > 1):
+                lsp1 = lsp1 - i[1]['Qty']
+                inventory_4['1L Lemon Spritz'].append(lsp1)
+            elif (i[1]['Material description'] == '1L ClearPure') and (i[1]['Day'] == 1):
+                p1 = p1 - i[1]['Qty']
+                inventory_5['1L ClearPure'].append(p1)
+            elif (i[1]['Material description'] == '1L ClearPure') and (i[1]['Day'] > 1):
+                p1 = p1 - i[1]['Qty']
+                inventory_5['1L ClearPure'].append(p1)
+
+        inventory = pd.DataFrame.from_dict(inventory)
+        inventory_1 = pd.DataFrame.from_dict(inventory_1)
+        inventory_2 = pd.DataFrame.from_dict(inventory_2)
+        inventory_3 = pd.DataFrame.from_dict(inventory_3)
+        inventory_4 = pd.DataFrame.from_dict(inventory_4)
+        inventory_5 = pd.DataFrame.from_dict(inventory_5)
         
         if re_ord == 'No':
-            chart_data = pd.DataFrame([spritz_5, lemspritz_5, pure_5, spritz_1, lemspritz_1, pure_1]).transpose()
-            chart_data.columns = ['500mL Spritz', '500mL Lemon Spritz', '500mL ClearPure', '1L Spritz', '1L Lemon Spritz', '1L ClearPure']
-            
-            
+            chart_data = pd.concat([inventory,inventory_1, inventory_2, inventory_3, inventory_4, inventory_5], axis = 1).fillna(0)
             
         return chart_data
     
