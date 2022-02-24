@@ -136,7 +136,7 @@ if file is not None:
         day_1_lemspritz = st.sidebar.number_input('Scheduled Delivery of 1L Lemon Spritz', min_value = 1, max_value = 20, step = 1)
         day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 20, step = 1)
         
-        new_data = round_first(option, df)
+        new_data = round_first(df)
         new_data.loc[day_5_spritz, '500mL Spritz'] = new_data.loc[day_5_spritz, '500mL Spritz'] + (ml_5_spritz*24)
         new_data.loc[day_5_lemspritz, '500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz, '500mL Lemon Spritz'] + (ml_5_lemspritz*24)
         new_data.loc[day_5_pure, '500mL ClearPure'] = new_data.loc[day_5_pure, '500mL ClearPure'] + (ml_5_pure*24)
@@ -151,7 +151,7 @@ if file is not None:
         
         
     else:
-        st.line_chart(round_first(option, df))
+        st.line_chart(round_first(df))
         st.altair_chart(dem_product(df), use_container_width = False)
         st.altair_chart(profit_product(df), use_container_width = False)
         
