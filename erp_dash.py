@@ -38,7 +38,7 @@ if file is not None:
                                 selection).properties(width = 200, height = 200)
         return chart_2
     
-    re_ord = st.sidebar.radio("Did you re-order?", ("Yes", "No"))
+    re_ord = st.radio("Did you re-order?", ("Yes", "No"))
 
     if re_ord == 'Yes':
         ml_5_Spritz = st.sidebar.number_input('Quantity of 500mL Spritz Reordered', value = int, 
