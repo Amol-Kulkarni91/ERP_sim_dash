@@ -11,7 +11,7 @@ st.image(image, use_column_width = True)
 st.title('ERP Simulation Dashboard')
 file = st.sidebar.file_uploader("Please upload the sales order report")
 
-st.radio('',('Round 1', 'Round 1', 'Round 1'))
+option = st.selectbox('Choose Round',('Round 1', 'Round 2', 'Round 3'))
 
 if file is not None:
     st.sidebar.success('File uploaded Succesfully')
