@@ -70,7 +70,7 @@ if file is not None:
             inventory_3 = {'1L Spritz' : [sp1]} 
             inventory_4 = {'1L Lemon Spritz' : [lsp1]}
             inventory_5 = {'1L ClearPure': [p1]}
-            sorted_df = sorted_df.loc[(sorted_data_f['Round' == 2])]
+            sorted_df = sorted_df.loc[(sorted_df['Round' == 2])]
             
         else:
             sp5 = sorted_df.loc[(sorted_df.Round == 2) & (sorted_df.Day == 20) & (sorted_df['Material description'] == '500mL Spritz')]['Qty']
@@ -85,7 +85,7 @@ if file is not None:
             inventory_3 = {'1L Spritz' : [sp1]} 
             inventory_4 = {'1L Lemon Spritz' : [lsp1]}
             inventory_5 = {'1L ClearPure': [p1]}
-            sorted_df = sorted_df.loc[(sorted_data_f['Round' == 3])]
+            sorted_df = sorted_df.loc[(sorted_df['Round' == 3])]
             
         
         for i in sorted_df.iterrows():
