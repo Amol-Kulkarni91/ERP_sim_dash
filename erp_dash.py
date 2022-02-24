@@ -39,6 +39,11 @@ if file is not None:
         return chart_2
     
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"))
+    
+    if re_ord == "Yes":
+        count = st.number_input('Insert a number', min_value=1, step=1)
+    else:
+        continue
 
     st.altair_chart(dem_product(df), use_container_width = False)
     st.altair_chart(profit_product(df), use_container_width = False)
