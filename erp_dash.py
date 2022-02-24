@@ -11,6 +11,8 @@ st.image(image, use_column_width = True)
 st.title('ERP Simulation Dashboard')
 file = st.sidebar.file_uploader("Please upload the sales order report")
 
+st.radio(,('Round 1', 'Round 1', 'Round 1'))
+
 if file is not None:
     st.sidebar.success('File uploaded Succesfully')
     df = pd.read_excel(file)
