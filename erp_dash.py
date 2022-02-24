@@ -105,7 +105,7 @@ if file is not None:
         inventory_5 = pd.DataFrame.from_dict(inventory_5)
         
         chart_data = pd.concat([inventory,inventory_1, inventory_2, inventory_3, inventory_4, inventory_5], axis = 1).fillna(0)
-            
+        chart_data[chart_data < 0] = 0  
         return chart_data
     
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
