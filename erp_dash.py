@@ -22,6 +22,7 @@ if file is not None:
     df = pd.read_excel(file)
     df['Profit'] = df['Value'] - df['Cost']
     def dem_product(data_f):
+        st.subheader("Demand by Region")
         chart = px.histogram(data_f, x = 'Material description', y = 'Qty', color = 'Area', 
                              barmode = 'group', facet_row = 'Round', height = 600)
         chart.update_xaxes(None)
