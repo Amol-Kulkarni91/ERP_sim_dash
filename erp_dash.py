@@ -106,17 +106,6 @@ if file is not None:
         return chart_data
     
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
-    option = st.selectbox('Choose Round',('Round 1', 'Round 2', 'Round 3'))
-    
-    if option == 'Round 1':
-        df = df.loc[df['Round'] == 1]
-            
-    elif option == 'Round 2':
-        df_1 = df.loc[df['Round'] == 1]
-        df = df.loc[df['Round'] == 2]
-    else:
-        df_2 = df.loc[df['Round'] == 2]
-        df = df.loc[df['Round'] == 3]
     
     if re_ord == "Yes":
         st.sidebar.subheader('Reorder Quantity Information')
