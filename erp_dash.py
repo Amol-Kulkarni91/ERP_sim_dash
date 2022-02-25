@@ -1,8 +1,7 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import plotly.subplots as make_subplots
-import plotly.graph_objects as go
+import plotly.express as px
 
 
 
@@ -21,50 +20,10 @@ if file is not None:
     df = pd.read_excel(file)
     df['Profit'] = df['Value'] - df['Cost']
     def dem_product(data_f):
-        st.subheader('Demand by Region')
-
-        chart = go.Figure(data =[go.Histogram(name = 'NO', x = data_f['Material description'], y = data_f['Qty']),
-                                go.Histogram(name = 'SO', x = data_f['Material description'], y = data_f['Qty']),
-                                go.Histogram(name = 'WO', x = data_f['Material description'], y = data_f['Qty'])])
-#         chart.update_layout(barmode='group')
-        chart.update_xaxes(title=None)
-        chart.update_yaxes(title='Total Demand')
+        chart = px.histogram(data_f, x = 'Material description', y = 'Qty', color = 'Area', 
+                             barmode = 'group', facet_row = 'Round', height = 600)
+        
         return chart
-
-
-    def profit_product(data_f):
-        st.subheader('Profit by Region')
-        if len(data_f['Round'].unique()) == 1:
-            chart_2 = go.Figure(data=[go.Pie(labels=data_f['Area'], values=df['Profit'], hole=.6)])
-            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.5, y=0.5, font_size=20, showarrow=False)])
-        elif len(data_f['Round'].unique()) == 2:
-            df_1 = data_f.loc[data_f['Round'] == 1]
-            df_2 = data_f.loc[data_f['Round'] == 2]
-            chart_2 = make_subplots(rows=1, cols=2, specs=[[{'type':'domain'}, {'type':'domain'}]])
-            chart_2.add_trace(go.Pie(labels=df_1['Area'], values=df_1['Profit']),
-              1, 1)
-            chart_2.add_trace(go.Pie(labels=df_2['Area'], values=df_2['Profit']),
-              1, 2)
-            chart_2.update_traces(hole=.4, hoverinfo="label+percent")
-
-            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False),
-                                               dict(text='Round 2', x=0.82, y=0.5, font_size=20, showarrow=False)])
-        else:
-            df_1 = data_f.loc[data_f['Round'] == 1]
-            df_2 = data_f.loc[data_f['Round'] == 2]
-            df_3 = data_f.loc[data_f['Round'] == 3]
-            chart_2 = make_subplots(rows=1, cols=3, specs=[[{'type':'domain'}, {'type':'domain'}, {'type':'domain'}]])
-            chart_2.add_trace(go.Pie(labels=df_1['Area'], values=df_1['Profit']),1, 1)
-            chart_2.add_trace(go.Pie(labels=df_2['Area'], values=df_2['Profit']),1, 2)
-            chart_2.add_trace(go.Pie(labels=df_3['Area'], values=df_3['Profit']),1, 3)
-
-            chart_2.update_traces(hole=.4, hoverinfo="label+percent")
-            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False),
-                                               dict(text='Round 2', x=0.82, y=0.5, font_size=20, showarrow=False),
-                                               dict(text='Round 3', x=1.46, y=0.5, font_size=20, showarrow=False)])
-
-
-        return chart_2
     
     
 
