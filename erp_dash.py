@@ -25,6 +25,7 @@ if file is not None:
         chart = px.histogram(data_f, x ='Material description', y = 'Qty', color = 'Area', barmode = 'group', 
                              template = 'seaborn', facet_row = 'Round', height = 600)
         chart.update_xaxes(title=None)
+        chart.update_yaxes(title='Total Demand')
         return chart
 
     def profit_product(data_f):
