@@ -59,7 +59,7 @@ if file is not None:
             chart_2.update_layout(annotations=[dict(text='Round 1', x=0.08, y=0.5, font_size=20, showarrow=False),
                                                dict(text='Round 2', x=0.5, y=0.5, font_size=20, showarrow=False),
                                                dict(text='Round 3', x=0.93, y=0.5, font_size=20, showarrow=False)],
-                                 width = 500, height = 500)
+                                 width = 1500, height = 1500)
 
            
         return chart_2
