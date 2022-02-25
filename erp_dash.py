@@ -1,8 +1,8 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import plotly.subplots as sp
-import plotly.express as px
+import plotly.subplots as make_subplots
+import plotly.graph_objects as go
 
 
 
