@@ -1,6 +1,8 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 
 
@@ -21,16 +23,14 @@ if file is not None:
     
     
     def dem_product(data_f):
-        import plotly.express as px
         st.subheader('Demand by Region')
-        chart = px.histogram(data_f, x ='Material description', y = 'Qty', color = 'Area', barmode = 'group', template = 'seaborn', facet_row = 'Round', height = 600)
+
+        chart = go.Figure(data =[go.Bar(name = data_f['Area'], x = data_f['Material description'], y = data_f['Qty']),])
         chart.update_xaxes(title=None)
         chart.update_yaxes(title='Total Demand')
         return chart
 
     def profit_product(data_f):
-        from plotly.subplots import make_subplots
-        import plotly.graph_objects as go
         st.subheader('Profit by Region')
         if len(data_f['Round'].unique()) == 1:
             chart_2 = go.Figure(data=[go.Pie(labels=data_f['Area'], values=df['Profit'], hole=.6)])
