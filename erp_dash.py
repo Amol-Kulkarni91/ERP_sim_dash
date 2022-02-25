@@ -23,7 +23,7 @@ if file is not None:
     def dem_product(data_f):
         st.subheader('Demand by Region')
         chart = px.histogram(data_f, x ='Material description', y = 'Qty', color = 'Area', barmode = 'group', 
-                             template = 'ggplot2', facet_row = 'Round', height = 800)
+                             template = 'plotly', facet_row = 'Round', height = 800)
         return chart
 
     def profit_product(data_f):
