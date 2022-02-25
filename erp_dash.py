@@ -36,6 +36,7 @@ if file is not None:
         if len(data_f['Round'].unique()) == 1:
             chart_2 = go.Figure(data=[go.Pie(labels=data_f['Area'], values=df['Profit'], hole=.6)])
             chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False)]
+        
         elif len(data_f['Round'].unique()) == 2:
             df_1 = data_f[data_f['Round'] == 1]
             df_2 = data_f[data_f['Round'] == 2]
@@ -44,7 +45,7 @@ if file is not None:
               1, 1)
             chart_2.add_trace(go.Pie(labels=df_2['Area'], values=df_2['Profit'], name="Round 2"),
               1, 2)
-            chart_2.update_traces(hole=.6, hoverinfo="label+percent+name")
+            chart_2.update_traces(hole=.4, hoverinfo="label+percent+name")
 
             chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False),
                                                dict(text='Round 2', x=0.82, y=0.5, font_size=20, showarrow=False)])
