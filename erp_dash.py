@@ -29,13 +29,10 @@ if file is not None:
         return chart
 
     def profit_product(data_f):
-        selection = alt.selection_multi(fields=['Material description'], bind='legend')
+        data_f['Profit'] = data_f['Value'] - data_f['Cost']
         st.subheader('Profit by Region')
-        chart_2 = alt.Chart(data_f).mark_line().encode(x = 'Day:O', 
-                                 y = alt.Y('sum(Profit):Q', title = 'Profit by Product'), column = 'Area:N',
-                                 color = 'Material description:N', tooltip = ['sum(Profit):Q'], 
-                                 opacity=alt.condition(selection, alt.value(1), alt.value(0.2))).add_selection(
-                                selection).properties(width = 200, height = 200)
+        chart_2 = px.line(data_f, x = 'Day', y = 'Profit', color = 'Material Description', facet_row = 'Round', facet_row = 'Area', height = 600)
+
         return chart_2
     
     def round_first(data_f):
@@ -147,15 +144,15 @@ if file is not None:
         new_data.loc[day_1_pure, '1L ClearPure'] = new_data.loc[day_1_pure, '1L ClearPure'] + (l_1_pure*12)
         
         st.line_chart(new_data)
-        st.write(dem_product(df), use_container_width = True)
-        st.altair_chart(profit_product(df), use_container_width = False)
+        st.ploty_chart(dem_product(df), use_container_width = True)
+        st.ploty_chart(profit_product(df), use_container_width = True)
         
         
         
     else:
         st.line_chart(round_first(df))
-        st.write(dem_product(df), use_container_width = True)
-        st.altair_chart(profit_product(df), use_container_width = False)
+        st.ploty_chart(dem_product(df), use_container_width = True)
+        st.ploty_chart(profit_product(df), use_container_width = True)
         
 
     
