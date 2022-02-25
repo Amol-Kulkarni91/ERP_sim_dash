@@ -26,7 +26,7 @@ if file is not None:
         chart = go.Figure(data =[go.Histogram(name = 'NO', x = data_f['Material description'], y = data_f['Qty']),
                                 go.Histogram(name = 'SO', x = data_f['Material description'], y = data_f['Qty']),
                                 go.Histogram(name = 'WO', x = data_f['Material description'], y = data_f['Qty'])])
-        chart.update_layout(barmode='group')
+#         chart.update_layout(barmode='group')
         chart.update_xaxes(title=None)
         chart.update_yaxes(title='Total Demand')
         return chart
