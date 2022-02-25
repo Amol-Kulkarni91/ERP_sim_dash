@@ -51,9 +51,9 @@ if file is not None:
             df_2 = data_f.loc[data_f['Round'] == 2]
             df_3 = data_f.loc[data_f['Round'] == 3]
             chart_2 = make_subplots(rows=1, cols=3, specs=[[{'type':'domain'}, {'type':'domain'}, {'type':'domain'}]])
-            chart_2.add_trace(go.Pie(labels=df_1['Area'], values=df_1['Profit']),1, 1)
-            chart_2.add_trace(go.Pie(labels=df_2['Area'], values=df_2['Profit']),1, 2)
-            chart_2.add_trace(go.Pie(labels=df_3['Area'], values=df_3['Profit']),1, 3)
+            chart_2.add_trace(go.Pie(labels=df_1['Area'], values=df_1['Profit']),1, 1,scalegroup='one')
+            chart_2.add_trace(go.Pie(labels=df_2['Area'], values=df_2['Profit']),1, 2,scalegroup='one')
+            chart_2.add_trace(go.Pie(labels=df_3['Area'], values=df_3['Profit']),1, 3,scalegroup='one')
 
             chart_2.update_traces(hole=.6, hoverinfo="label+percent")
             chart_2.update_layout(annotations=[dict(text='Round 1', x=0.08, y=0.5, font_size=20, showarrow=False),
