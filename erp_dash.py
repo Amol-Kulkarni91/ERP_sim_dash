@@ -146,14 +146,14 @@ if file is not None:
         
         st.line_chart(new_data)
         st.plotly_chart(dem_product(df), use_container_width = True)
-        st.plotly_chart(profit_product(df), use_container_width = True)
+        st.plotly_chart(profit_product(df))
         
         
         
     else:
         st.line_chart(round_first(df))
         st.plotly_chart(dem_product(df), use_container_width = True)
-        st.plotly_chart(profit_product(df), use_container_width = True)
+        st.plotly_chart(profit_product(df))
         
 
     
