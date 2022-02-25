@@ -3,8 +3,7 @@ from PIL import Image
 import pandas as pd
 import altair as alt
 import plotly.express as px
-from plotly.subplots import make_subplots
-import plotly.graph_objects as go
+
 
 image = Image.open('Pennstate logo.png')
 st.image(image, use_column_width = True)
@@ -30,6 +29,8 @@ if file is not None:
         return chart
 
     def profit_product(data_f):
+        from plotly.subplots import make_subplots
+        import plotly.graph_objects as go
         st.subheader('Profit by Region')
         if len(data_f['Round'].unique()) == 1:
             chart_2 = go.Figure(data=[go.Pie(labels=data_f['Area'], values=df['Profit'], hole=.6)])
