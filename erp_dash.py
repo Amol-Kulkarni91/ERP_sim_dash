@@ -1,8 +1,7 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import altair as alt
-import plotly.express as px
+
 
 
 image = Image.open('Pennstate logo.png')
@@ -22,6 +21,7 @@ if file is not None:
     
     
     def dem_product(data_f):
+        import plotly.express as px
         st.subheader('Demand by Region')
         chart = px.histogram(data_f, x ='Material description', y = 'Qty', color = 'Area', barmode = 'group', template = 'seaborn', facet_row = 'Round', height = 600)
         chart.update_xaxes(title=None)
