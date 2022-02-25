@@ -31,7 +31,8 @@ if file is not None:
     def profit_product(data_f):
         data_f['Profit'] = data_f['Value'] - data_f['Cost']
         st.subheader('Profit by Region')
-        chart_2 = px.line(data_f, x = 'Day', y = 'Profit', color = 'Material description', facet_row = 'Round', facet_col = 'Area', height = 600)
+        chart_2 = px.line(data_f, x = 'Day', y = 'Profit', color = 'Material description', facet_row = 'Round', facet_col = 'Area', 
+                          width = 600)
 
         return chart_2
     
