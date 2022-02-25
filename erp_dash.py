@@ -21,7 +21,7 @@ if file is not None:
     
     
     def dem_product(data_f):
-        chart = px.histogram(data_f, x ='Material description', y = 'Qty', color = 'Area', facet_row = 'Round')
+        chart = px.histogram(data_f, x ='Material description', y = 'Qty', color = 'Area', barmode = 'group', facet_row = 'Round')
         return chart
 
     def profit_product(data_f):
