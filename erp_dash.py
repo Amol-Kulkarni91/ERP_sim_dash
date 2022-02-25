@@ -25,9 +25,9 @@ if file is not None:
     def dem_product(data_f):
         st.subheader('Demand by Region')
 
-        chart = go.Figure(data =[go.Bar(name = 'NO', x = data_f['Material description'], y = data_f['Qty']),
-                                go.Bar(name = 'SO', x = data_f['Material description'], y = data_f['Qty']),
-                                go.Bar(name = 'WO', x = data_f['Material description'], y = data_f['Qty'])])
+        chart = go.Figure(data =[go.histogram(name = 'NO', x = data_f['Material description'], y = data_f['Qty']),
+                                go.histogram(name = 'SO', x = data_f['Material description'], y = data_f['Qty']),
+                                go.histogram(name = 'WO', x = data_f['Material description'], y = data_f['Qty'])])
         chart.update_layout(barmode='group')
         chart.update_xaxes(title=None)
         chart.update_yaxes(title='Total Demand')
