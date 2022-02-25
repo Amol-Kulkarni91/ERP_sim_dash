@@ -3,6 +3,8 @@ from PIL import Image
 import pandas as pd
 import altair as alt
 import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 image = Image.open('Pennstate logo.png')
 st.image(image, use_column_width = True)
@@ -31,8 +33,34 @@ if file is not None:
     def profit_product(data_f):
         data_f['Profit'] = data_f['Value'] - data_f['Cost']
         st.subheader('Profit by Region')
-        chart_2 = px.line(data_f, x = 'Day', y = 'Profit', color = 'Area', facet_row = 'Round', 
-                          template = 'seaborn', width = 600)
+        if len(data_f['Round'].unique()) == 1:
+            chart_2 = go.Figure(data=[go.Pie(labels=data_f['Area'], values=df['Profit'], hole=.6)])
+        elif len(data_f['Round'].unique()) == 2:
+            df_1 = data_f[data_f['Round'] == 1]
+            df_2 = data_f[data_f['Round'] == 2]
+            chart_2 = make_subplots(rows=1, cols=2, specs=[[{'type':'domain'}, {'type':'domain'}]])
+            chart_2.add_trace(go.Pie(labels=df_1['Area'], values=df_1['Profit'], name="Round 1"),
+              1, 1)
+            chart_2.add_trace(go.Pie(labels=df_2['Area'], values=df_2['Profit'], name="Round 2"),
+              1, 2)
+            chart_2.update_traces(hole=.6, hoverinfo="label+percent+name")
+
+            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False),
+                                               dict(text='Round 2', x=0.82, y=0.5, font_size=20, showarrow=False)])
+        else:
+            df_1 = data_f[data_f['Round'] == 1]
+            df_2 = data_f[data_f['Round'] == 2]
+            df_3 = data_f[data_f['Round'] == 3]
+            chart_2 = make_subplots(rows=1, cols=3, specs=[[{'type':'domain'}, {'type':'domain'}, {'type':'domain'}]])
+            chart_2.add_trace(go.Pie(labels=df_1['Area'], values=df_1['Profit'], name="Round 1"),1, 1)
+            chart_2.add_trace(go.Pie(labels=df_2['Area'], values=df_2['Profit'], name="Round 2"),1, 2)
+            chart_2.add_trace(go.Pie(labels=df_3['Area'], values=df_3['Profit'], name="Round 3"),1, 3)
+            
+            chart_2.update_traces(hole=.4, hoverinfo="label+percent+name")
+            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False),
+                                               dict(text='Round 2', x=0.82, y=0.5, font_size=20, showarrow=False),
+                                               dict(text='Round 3', x=1.46, y=0.5, font_size=20, showarrow=False)])
+
 
         return chart_2
     
