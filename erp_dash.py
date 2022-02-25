@@ -56,7 +56,7 @@ if file is not None:
             chart_2.add_trace(go.Pie(labels=df_1['Area'], values=df_1['Profit'], name="Round 1"),1, 1)
             chart_2.add_trace(go.Pie(labels=df_2['Area'], values=df_2['Profit'], name="Round 2"),1, 2)
             chart_2.add_trace(go.Pie(labels=df_3['Area'], values=df_3['Profit'], name="Round 3"),1, 3)
-            
+
             chart_2.update_traces(hole=.4, hoverinfo="label+percent+name")
             chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False),
                                                dict(text='Round 2', x=0.82, y=0.5, font_size=20, showarrow=False),
