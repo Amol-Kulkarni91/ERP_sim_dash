@@ -35,7 +35,7 @@ if file is not None:
         st.subheader('Profit by Region')
         if len(data_f['Round'].unique()) == 1:
             chart_2 = go.Figure(data=[go.Pie(labels=data_f['Area'], values=df['Profit'], hole=.6)])
-            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False)])
+            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.25, y=0.5, font_size=20, showarrow=False)])
         elif len(data_f['Round'].unique()) == 2:
             df_1 = data_f.loc[data_f['Round'] == 1]
             df_2 = data_f.loc[data_f['Round'] == 2]
