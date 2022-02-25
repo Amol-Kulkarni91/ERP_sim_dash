@@ -38,8 +38,8 @@ if file is not None:
             chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False)]
         
         elif len(data_f['Round'].unique()) == 2:
-            df_1 = data_f[data_f['Round'] == 1]
-            df_2 = data_f[data_f['Round'] == 2]
+            df_1 = data_f.loc[data_f['Round'] == 1]
+            df_2 = data_f.loc[data_f['Round'] == 2]
             chart_2 = make_subplots(rows=1, cols=2, specs=[[{'type':'domain'}, {'type':'domain'}]])
             chart_2.add_trace(go.Pie(labels=df_1['Area'], values=df_1['Profit'], name="Round 1"),
               1, 1)
@@ -50,9 +50,9 @@ if file is not None:
             chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False),
                                                dict(text='Round 2', x=0.82, y=0.5, font_size=20, showarrow=False)])
         else:
-            df_1 = data_f[data_f['Round'] == 1]
-            df_2 = data_f[data_f['Round'] == 2]
-            df_3 = data_f[data_f['Round'] == 3]
+            df_1 = data_f.loc[data_f['Round'] == 1]
+            df_2 = data_f.loc[data_f['Round'] == 2]
+            df_3 = data_f.loc[data_f['Round'] == 3]
             chart_2 = make_subplots(rows=1, cols=3, specs=[[{'type':'domain'}, {'type':'domain'}, {'type':'domain'}]])
             chart_2.add_trace(go.Pie(labels=df_1['Area'], values=df_1['Profit'], name="Round 1"),1, 1)
             chart_2.add_trace(go.Pie(labels=df_2['Area'], values=df_2['Profit'], name="Round 2"),1, 2)
