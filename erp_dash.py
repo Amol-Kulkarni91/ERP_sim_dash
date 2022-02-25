@@ -30,7 +30,6 @@ if file is not None:
         return chart
 
     def profit_product(data_f):
-        data_f['Profit'] = data_f['Value'] - data_f['Cost']
         st.subheader('Profit by Region')
         if len(data_f['Round'].unique()) == 1:
             chart_2 = go.Figure(data=[go.Pie(labels=data_f['Area'], values=df['Profit'], hole=.6)])
