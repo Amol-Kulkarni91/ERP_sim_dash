@@ -144,15 +144,15 @@ if file is not None:
         new_data.loc[day_1_pure, '1L ClearPure'] = new_data.loc[day_1_pure, '1L ClearPure'] + (l_1_pure*12)
         
         st.line_chart(new_data)
-        st.ploty_chart(dem_product(df), use_container_width = True)
-        st.ploty_chart(profit_product(df), use_container_width = True)
+        st.plotly_chart(dem_product(df), use_container_width = True)
+        st.plotly_chart(profit_product(df), use_container_width = True)
         
         
         
     else:
         st.line_chart(round_first(df))
-        st.ploty_chart(dem_product(df), use_container_width = True)
-        st.ploty_chart(profit_product(df), use_container_width = True)
+        st.plotly_chart(dem_product(df), use_container_width = True)
+        st.plotly_chart(profit_product(df), use_container_width = True)
         
 
     
