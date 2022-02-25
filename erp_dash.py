@@ -30,8 +30,6 @@ if file is not None:
         chart.update_yaxes(title='Total Demand')
         return chart
 
-    def profit_product(data_f):
-        st.subheader('Profit by Region')
     
     
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
@@ -63,13 +61,13 @@ if file is not None:
         
         st.line_chart(new_data)
         st.plotly_chart(dem_product(df))
-        st.plotly_chart(profit_product(df))
+#         st.plotly_chart(profit_product(df))
         
         
         
     else:
         st.plotly_chart(dem_product(df))
-        st.plotly_chart(profit_product(df))
+#         st.plotly_chart(profit_product(df))
         
 
     
