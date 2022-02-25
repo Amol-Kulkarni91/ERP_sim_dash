@@ -45,8 +45,8 @@ if file is not None:
               1, 2)
             chart_2.update_traces(hole=.6, hoverinfo="label+percent")
 
-            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.1, y=0.5, font_size=20, showarrow=False),
-                                               dict(text='Round 2', x=0.3, y=0.5, font_size=20, showarrow=False)])
+            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.25, y=0.5, font_size=20, showarrow=False),
+                                               dict(text='Round 2', x=0.5, y=0.5, font_size=20, showarrow=False)])
         else:
             df_1 = data_f.loc[data_f['Round'] == 1]
             df_2 = data_f.loc[data_f['Round'] == 2]
