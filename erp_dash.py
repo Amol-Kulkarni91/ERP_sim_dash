@@ -35,6 +35,7 @@ if file is not None:
         st.subheader('Profit by Region')
         if len(data_f['Round'].unique()) == 1:
             chart_2 = go.Figure(data=[go.Pie(labels=data_f['Area'], values=df['Profit'], hole=.6)])
+            chart_2.update_layout(annotations=[dict(text='Round 1', x=0.18, y=0.5, font_size=20, showarrow=False)]
         elif len(data_f['Round'].unique()) == 2:
             df_1 = data_f[data_f['Round'] == 1]
             df_2 = data_f[data_f['Round'] == 2]
@@ -162,14 +163,14 @@ if file is not None:
         new_data.loc[day_1_pure, '1L ClearPure'] = new_data.loc[day_1_pure, '1L ClearPure'] + (l_1_pure*12)
         
         st.line_chart(new_data)
-        st.plotly_chart(dem_product(df), use_container_width = True)
+        st.plotly_chart(dem_product(df))
         st.plotly_chart(profit_product(df))
         
         
         
     else:
         st.line_chart(round_first(df))
-        st.plotly_chart(dem_product(df), use_container_width = True)
+        st.plotly_chart(dem_product(df))
         st.plotly_chart(profit_product(df))
         
 
