@@ -58,15 +58,19 @@ if file is not None:
     def inv_chart(data_f):
         st.subheader('Inventory')
         data_f['Day'] = list(np.arange(1, len(data_f) + 1))
-#         data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
-        colors = px.colors.qualitative.Plotly
-        chart_3 = go.Figure()
-        chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['1L ClearPure'], mode = 'line', line=dict(color=colors[0])))
-        chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['1L Lemon Spritz'], mode = 'line', line=dict(color=colors[1])))
-        chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['1L Spritz'], mode = 'line', line=dict(color=colors[2])))
-        chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['500mL Spritz'], mode = 'line', line=dict(color=colors[3])))
-        chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['500mL Lemon Spritz'], mode = 'line', line=dict(color=colors[4])))
-        chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['500mL ClearPure'], mode = 'line', line=dict(color=colors[5])))
+        data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
+#         colors = px.colors.qualitative.Plotly
+#         chart_3 = go.Figure()
+#         chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['1L ClearPure'], mode = 'line', line=dict(color=colors[0])))
+#         chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['1L Lemon Spritz'], mode = 'line', line=dict(color=colors[1])))
+#         chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['1L Spritz'], mode = 'line', line=dict(color=colors[2])))
+#         chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['500mL Spritz'], mode = 'line', line=dict(color=colors[3])))
+#         chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['500mL Lemon Spritz'], mode = 'line', line=dict(color=colors[4])))
+#         chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['500mL ClearPure'], mode = 'line', line=dict(color=colors[5])))
+        data_f = pd.melt(data_f, id_vars = ['Day'], value_vars = ['1L ClearPure', '1L Lemon Spritz','1L Spritz',
+                                                  '500mL Spritz', '500mL Lemon Spritz', '500mL ClearPure'])
+        data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
+        chart_3 = px.line(data_f, x = 'Day', y = 'value', color = 'Products')
         
         return chart_3
     
