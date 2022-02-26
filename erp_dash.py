@@ -70,7 +70,7 @@ if file is not None:
         data_f = pd.melt(data_f, id_vars = ['Day'], value_vars = ['1L ClearPure', '1L Lemon Spritz','1L Spritz',
                                                   '500mL Spritz', '500mL Lemon Spritz', '500mL ClearPure'])
         data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
-        chart_3 = px.line(data_f, x = 'Day', y = 'value', color = 'Products')
+        chart_3 = px.line(data_f, x = 'Day', y = 'value', color = 'Products', template = 'seaborn')
         chart_3.update_yaxes(title = 'Units in Inventory')
         
         return chart_3
