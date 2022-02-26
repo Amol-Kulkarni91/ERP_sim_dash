@@ -60,7 +60,7 @@ if file is not None:
         data_f['Day'] = list(np.arange(1, len(data_f) + 1))
         data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
         chart_3 = go.Figure()
-        chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['value],
+        chart_3.add_trace(go.Scatter(x=data_f['Day'], y=data_f['value'],
                     mode='lines', color = data_f['Products'],
                     name=data_f['Products']))
         
