@@ -56,6 +56,7 @@ if file is not None:
 			else:
 				x = x - data_f.iloc[row, col]
 				data_f.iloc[row, col] = x
+				h=0
         
         return data_f
     
