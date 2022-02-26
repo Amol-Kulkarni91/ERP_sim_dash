@@ -76,7 +76,7 @@ if file is not None:
         wdf = pd.concat([wdf_1, wdf_2, wdf_3])
         data_f = first_round(wdf)
         
-        return wd_f
+        return data_f
 
     def inv_chart(data_f):
         st.subheader('Inventory')
