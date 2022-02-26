@@ -158,33 +158,32 @@ if file is not None:
             submit_button = st.form_submit_button(label='Submit')
         
         if len(df['Round'].unique()) == 1:
-                             new_data = first_round(wide_data(df))
+                             new_data = wide_data(df)
                              new_data.loc[day_5_spritz,'500mL Spritz'] = new_data.loc[day_5_spritz,'500mL Spritz'] + (ml_5_spritz*24)
                              new_data.loc[day_5_lemspritz,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz,'500mL Spritz'] + (ml_5_lemspritz*24)
                              new_data.loc[day_5_pure,'500mL ClearPure'] = new_data.loc[day_5_pure,'500mL Lemon Spritz'] + (ml_5_pure*24)
                              new_data.loc[day_1_spritz,'1L Spritz'] = new_data.loc[day_1_spritz,'500mL ClearPure'] + (l_1_spritz*12)
                              new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] + (l_1_lemspritz*12)
                              new_data.loc[day_1_pure,'1L ClearPure'] = new_data.loc[day_1_pure,'1L ClearPure'] + (l_1_pure*12)
-                             st.plotly_chart(inv_chart(new_data))
+                             st.plotly_chart(inv_chart(first_round(new_data)))
                              
         elif len(df['Round'].unique()) == 2:
-                             new_data = second_round(df)
                              new_data.loc[day_5_spritz,'500mL Spritz'] = new_data.loc[day_5_spritz,'500mL Spritz'] + (ml_5_spritz*24)
                              new_data.loc[day_5_lemspritz,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz,'500mL Spritz'] + (ml_5_lemspritz*24)
                              new_data.loc[day_5_pure,'500mL ClearPure'] = new_data.loc[day_5_pure,'500mL Lemon Spritz'] + (ml_5_pure*24)
                              new_data.loc[day_1_spritz,'1L Spritz'] = new_data.loc[day_1_spritz,'500mL ClearPure'] + (l_1_spritz*12)
                              new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] + (l_1_lemspritz*12)
                              new_data.loc[day_1_pure,'1L ClearPure'] = new_data.loc[day_1_pure,'1L ClearPure'] + (l_1_pure*12)
-                             st.plotly_chart(inv_chart(new_data))
+                             st.plotly_chart(inv_chart(second_round(new_data)))
         else:
-                             new_data = third_round(df)
+                             
                              new_data.loc[day_5_spritz,'500mL Spritz'] = new_data.loc[day_5_spritz,'500mL Spritz'] + (ml_5_spritz*24)
                              new_data.loc[day_5_lemspritz,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz,'500mL Spritz'] + (ml_5_lemspritz*24)
                              new_data.loc[day_5_pure,'500mL ClearPure'] = new_data.loc[day_5_pure,'500mL Lemon Spritz'] + (ml_5_pure*24)
                              new_data.loc[day_1_spritz,'1L Spritz'] = new_data.loc[day_1_spritz,'500mL ClearPure'] + (l_1_spritz*12)
                              new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] + (l_1_lemspritz*12)
                              new_data.loc[day_1_pure,'1L ClearPure'] = new_data.loc[day_1_pure,'1L ClearPure'] + (l_1_pure*12)
-                             st.plotly_chart(inv_chart(new_data))
+                             st.plotly_chart(inv_chart(third_round(new_data)))
 
 
 
