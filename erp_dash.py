@@ -165,7 +165,7 @@ if file is not None:
                              st.plotly_chart(inv_chart(new_data))
                              
         elif len(df['Round'].unique()) == 2:
-                             new_data = second_round(wide_data(df))
+                             new_data = second_round(df)
                              new_data.loc[day_5_spritz,'500mL Spritz'] = new_data.loc[day_5_spritz,'500mL Spritz'] + (ml_5_spritz*24)
                              new_data.loc[day_5_lemspritz,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz,'500mL Spritz'] + (ml_5_lemspritz*24)
                              new_data.loc[day_5_pure,'500mL ClearPure'] = new_data.loc[day_5_pure,'500mL Lemon Spritz'] + (ml_5_pure*24)
@@ -174,7 +174,7 @@ if file is not None:
                              new_data.loc[day_1_pure,'1L ClearPure'] = new_data.loc[day_1_pure,'1L ClearPure'] + (l_1_pure*12)
                              st.plotly_chart(inv_chart(new_data))
         else:
-                             new_data = third_round(wide_data(df))
+                             new_data = third_round(df)
                              new_data.loc[day_5_spritz,'500mL Spritz'] = new_data.loc[day_5_spritz,'500mL Spritz'] + (ml_5_spritz*24)
                              new_data.loc[day_5_lemspritz,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz,'500mL Spritz'] + (ml_5_lemspritz*24)
                              new_data.loc[day_5_pure,'500mL ClearPure'] = new_data.loc[day_5_pure,'500mL Lemon Spritz'] + (ml_5_pure*24)
