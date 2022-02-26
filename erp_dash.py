@@ -26,7 +26,7 @@ if file is not None:
     def dem_product(data_f):
         st.subheader("Demand by Region")
         chart = px.histogram(data_f, x = 'Material description', y = 'Qty', color = 'Area', 
-                             barmode = 'group', facet_row = 'Round', height = 600)
+                             barmode = 'group', facet_row = 'Round', height = 600, template = 'seaborn)
         chart.update_xaxes(None)
         chart.update_yaxes(title = 'Total Demand')
         
@@ -54,6 +54,29 @@ if file is not None:
                     data_f.iloc[row, col] = x
         
         return data_f
+    
+    def second_round(data_f):
+        df_1 = data_f.loc[data_f['Round'] == 1]
+        df_2 = data_f.loc[data_f['Round'] == 2]
+        wdf_1 = wide_data(df_1)
+        wdf_2 = wide_data(df_2)
+        wdf = pd.concat([wdf_1, wdf_2])
+        data_f = first_round(wdf)
+        
+        return data_f
+                             
+    def third_round(data_f):
+        df_1 = data_f.loc[data_f['Round'] == 1]
+        df_2 = data_f.loc[data_f['Round'] == 2]
+        df_3 = data_f.loc[data_f['Round'] == 3]
+        wdf_1 = wide_data(df_1)
+        wdf_2 = wide_data(df_2)
+        wdf_3 = wide_data(df_3)
+        
+        wdf = pd.concat([wdf_1, wdf_2, wdf_3])
+        data_f = first_round(wdf)
+        
+        return wd_f
 
     def inv_chart(data_f):
         st.subheader('Inventory')
@@ -131,7 +154,36 @@ if file is not None:
         day_1_lemspritz = st.sidebar.number_input('Scheduled Delivery of 1L Lemon Spritz', min_value = 1, max_value = 60, step = 1)
         day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 60, step = 1)
        
-            
+        if len(df['Round'].unique()) == 1:
+                             new_data = first_round(wide_data(df))
+                             new_data.loc[day_5_spritz,'500mL Spritz'] = new_data.loc[day_5_spritz,'500mL Spritz'] + (ml_5_spritz*24)
+                             new_data.loc[day_5_lemspritz,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz,'500mL Spritz'] + (ml_5_lemspritz*24)
+                             new_data.loc[day_5_pure,'500mL ClearPure'] = new_data.loc[day_5_pure,'500mL Lemon Spritz'] + (ml_5_pure*24)
+                             new_data.loc[day_1_spritz,'1L Spritz'] = new_data.loc[day_1_spritz,'500mL ClearPure'] + (l_1_spritz*12)
+                             new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] + (l_1_lemspritz*12)
+                             new_data.loc[day_1_pure,'1L ClearPure'] = new_data.loc[day_1_pure,'1L ClearPure'] + (l_1_pure*12)
+                             st.plotly_chart(inv_chart(new_data))
+                             
+        elif len(df['Round'].unique()) == 2:
+                             new_data = second_round(wide_data(df))
+                             new_data.loc[day_5_spritz,'500mL Spritz'] = new_data.loc[day_5_spritz,'500mL Spritz'] + (ml_5_spritz*24)
+                             new_data.loc[day_5_lemspritz,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz,'500mL Spritz'] + (ml_5_lemspritz*24)
+                             new_data.loc[day_5_pure,'500mL ClearPure'] = new_data.loc[day_5_pure,'500mL Lemon Spritz'] + (ml_5_pure*24)
+                             new_data.loc[day_1_spritz,'1L Spritz'] = new_data.loc[day_1_spritz,'500mL ClearPure'] + (l_1_spritz*12)
+                             new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] + (l_1_lemspritz*12)
+                             new_data.loc[day_1_pure,'1L ClearPure'] = new_data.loc[day_1_pure,'1L ClearPure'] + (l_1_pure*12)
+                             st.plotly_chart(inv_chart(new_data))
+        else:
+                             new_data = third_round(wide_data(df))
+                             new_data.loc[day_5_spritz,'500mL Spritz'] = new_data.loc[day_5_spritz,'500mL Spritz'] + (ml_5_spritz*24)
+                             new_data.loc[day_5_lemspritz,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz,'500mL Spritz'] + (ml_5_lemspritz*24)
+                             new_data.loc[day_5_pure,'500mL ClearPure'] = new_data.loc[day_5_pure,'500mL Lemon Spritz'] + (ml_5_pure*24)
+                             new_data.loc[day_1_spritz,'1L Spritz'] = new_data.loc[day_1_spritz,'500mL ClearPure'] + (l_1_spritz*12)
+                             new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz,'1L Lemon Spritz'] + (l_1_lemspritz*12)
+                             new_data.loc[day_1_pure,'1L ClearPure'] = new_data.loc[day_1_pure,'1L ClearPure'] + (l_1_pure*12)
+                             st.plotly_chart(inv_chart(new_data))
+
+
 
         
         
@@ -144,8 +196,16 @@ if file is not None:
         
     else:
         
+        if len(df['Round'].unique()) == 1:
+                             st.plotly_chart(inv_chart(first_round(wide_data(df))))
+                             
+        elif len(df['Round'].unique()) == 2:
+                             st.plotly_chart(inv_chart(second_round(df)))
+        else:
+                             st.plotly_chart(inv_chart(third_round(df)))
 
-        st.plotly_chart(inv_chart(first_round(wide_data(df))))
+
+        
         st.plotly_chart(profit_product(df))
         st.plotly_chart(dem_product(df))
         
