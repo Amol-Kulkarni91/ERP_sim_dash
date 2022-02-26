@@ -32,6 +32,37 @@ if file is not None:
         
         return chart
     
+    def wide_data(data_f):
+        data_f = data_f.sort_values(by = 'Day')
+        data_f = data_f.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
+        data_f = pd.pivot_table(data_f, index = 'Day', columns = ['Material description'], values= 'Qty')
+        data_f = data_f.fillna(0)
+        
+        return data_f
+    
+    def first_round(data_f):
+        data = data_f.to_numpy().tolist()
+        data.insert(0, [1000] * len(data_f.columns))
+        data_f = pd.DataFrame(data, index = [0] + data_f.index.tolist(), columns = data_f.columns)
+        data_f.columns.name = ''
+        
+        for col in range(0, data_f.shape[1]):
+            x = 1000
+            for row in range(0, len(data_f)):
+                if row != 0:
+                    x = x - data_f.iloc[row, col]
+                    data_f.iloc[row, col] = x
+        
+        return data_f
+
+    def inv_chart(data_f):
+        st.subheader('Inventory')
+        data_f['Day'] = list(np.arange(1, len(data_f) + 1))
+        data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
+        chart_3 = px.line(data_f, x = 'Day', y = 'value', color = 'Products')
+        
+        return chart_3
+    
     def profit_product(data_f):
         st.subheader('Profit by Region')
         if len(data_f['Round'].unique()) == 1:
@@ -66,36 +97,7 @@ if file is not None:
            
         return chart_2
     
-    def wide_data(data_f):
-        data_f = data_f.sort_values(by = 'Day')
-        data_f = data_f.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
-        data_f = pd.pivot_table(data_f, index = 'Day', columns = ['Material description'], values= 'Qty')
-        data_f = data_f.fillna(0)
-        
-        return data_f
     
-    def first_round(data_f):
-        data = data_f.to_numpy().tolist()
-        data.insert(0, [1000] * len(data_f.columns))
-        data_f = pd.DataFrame(data, index = [0] + data_f.index.tolist(), columns = data_f.columns)
-        data_f.columns.name = ''
-        
-        for col in range(0, data_f.shape[1]):
-            x = 1000
-            for row in range(0, len(data_f)):
-                if row != 0:
-                    x = x - data_f.iloc[row, col]
-                    data_f.iloc[row, col] = x
-        
-        return data_f
-
-    def inv_chart(data_f):
-        st.subheader('Inventory')
-        data_f['Day'] = list(np.arange(1, len(data_f) + 1))
-        data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
-        chart_3 = px.line(data_f, x = 'Day', y = 'value', color = 'Products')
-        
-        return chart_3
     
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
     
