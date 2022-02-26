@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
+import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -21,6 +22,7 @@ if file is not None:
     st.sidebar.success('File uploaded Succesfully')
     df = pd.read_excel(file)
     df['Profit'] = df['Value'] - df['Cost']
+    
     def dem_product(data_f):
         st.subheader("Demand by Region")
         chart = px.histogram(data_f, x = 'Material description', y = 'Qty', color = 'Area', 
@@ -64,7 +66,29 @@ if file is not None:
            
         return chart_2
     
+    def wide_data(data_f):
+        data_f = data_f.sort_values(by = 'Day')
+        data_f = data_f.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
+        data_f = pd.pivot_table(data_f, index = 'Day', columns = ['Material description'], values= 'Qty')
+        data_f = data_f.fillna(0)
+        
+        return data_f
     
+    def first_round(data_f):
+        data_f = wide_data(data_f)
+        data_f = data_f.to_numpy().tolist()
+        data_f.insert(0, [1000] * len(data_f.columns))
+        data_f = pd.DataFrame(data_f, index = [0] + data_f.index.tolist(), columns = data_f.columns)
+        data_f.columns.name = ''
+        
+        for col in range(0, data_f.shape[1]):
+            x = 1000
+            for row in range(0, len(data_f)):
+                if row != 0:
+                    x = x - data_f.iloc[row, col]
+                    data_f.iloc[row, col] = x
+        
+        return data_f
 
     
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
@@ -80,19 +104,16 @@ if file is not None:
         
         st.sidebar.subheader('Delivery Day')
         
-        day_5_spritz = st.sidebar.number_input('Scheduled Delivery of 500 mL Spritz', min_value = 1, max_value = 20, step = 1)
-        day_5_lemspritz = st.sidebar.number_input('Scheduled Delivery of 500 mL Lemon Spritz', min_value = 1, max_value = 20, step = 1)
-        day_5_pure = st.sidebar.number_input('Scheduled Delivery of 500 mL ClearPure', min_value = 1, max_value = 20, step = 1)
-        day_1_spritz = st.sidebar.number_input('Scheduled Delivery of 1L Spritz', min_value = 1, max_value = 20, step = 1)
-        day_1_lemspritz = st.sidebar.number_input('Scheduled Delivery of 1L Lemon Spritz', min_value = 1, max_value = 20, step = 1)
-        day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 20, step = 1)
+        day_5_spritz = st.sidebar.number_input('Scheduled Delivery of 500 mL Spritz', min_value = 1, max_value = 60, step = 1)
+        day_5_lemspritz = st.sidebar.number_input('Scheduled Delivery of 500 mL Lemon Spritz', min_value = 1, max_value = 60, step = 1)
+        day_5_pure = st.sidebar.number_input('Scheduled Delivery of 500 mL ClearPure', min_value = 1, max_value = 60, step = 1)
+        day_1_spritz = st.sidebar.number_input('Scheduled Delivery of 1L Spritz', min_value = 1, max_value = 60, step = 1)
+        day_1_lemspritz = st.sidebar.number_input('Scheduled Delivery of 1L Lemon Spritz', min_value = 1, max_value = 60, step = 1)
+        day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 60, step = 1)
        
-        new_data.loc[day_5_spritz, '500mL Spritz'] = new_data.loc[day_5_spritz, '500mL Spritz'] + (ml_5_spritz*24)
-        new_data.loc[day_5_lemspritz, '500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz, '500mL Lemon Spritz'] + (ml_5_lemspritz*24)
-        new_data.loc[day_5_pure, '500mL ClearPure'] = new_data.loc[day_5_pure, '500mL ClearPure'] + (ml_5_pure*24)
-        new_data.loc[day_1_spritz, '1L Spritz'] = new_data.loc[day_1_spritz, '1L Spritz'] + (l_1_spritz*12)
-        new_data.loc[day_1_lemspritz, '1L Lemon Spritz'] = new_data.loc[day_1_lemspritz, '1L Lemon Spritz'] + (l_1_lemspritz*12)
-        new_data.loc[day_1_pure, '1L ClearPure'] = new_data.loc[day_1_pure, '1L ClearPure'] + (l_1_pure*12)
+            
+
+        
         
         st.line_chart(new_data)
         st.plotly_chart(profit_product(df))
