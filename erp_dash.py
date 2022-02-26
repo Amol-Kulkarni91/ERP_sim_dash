@@ -90,7 +90,6 @@ if file is not None:
         return data_f
 
     def inv_chart(data_f):
-        import plotly.express as px
         st.subheader('Inventory')
         data_f['Day'] = list(np.arange(1, len(data_f) + 1))
         data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
