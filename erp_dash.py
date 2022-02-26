@@ -91,7 +91,7 @@ if file is not None:
 
     def inv_chart(data_f):
         st.subheader('Inventory')
-        data_f['Day'] = list(np.arange(1, len(df) + 1))
+        data_f['Day'] = list(np.arange(1, len(data_f) + 1))
         data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
         chart_3 = px.line(data_f, x = 'Day', y = 'value', color = 'Products')
         
@@ -129,7 +129,8 @@ if file is not None:
         
         
     else:
-        st.plotly_chart(inv_chart(first_round(wide_data(df))))
+
+        st.plotly_chart(first_round(wide_data(df)))
         st.plotly_chart(profit_product(df))
         st.plotly_chart(dem_product(df))
         
