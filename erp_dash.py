@@ -138,10 +138,9 @@ if file is not None:
         
         
     else:
-        wid_data = wide_data(df)
-#         first_data = first_round(wid_data)
+        
 
-        st.plotly_chart(wid_data)
+        st.plotly_chart(inv_chart(first_round(wide_data(df))))
         st.plotly_chart(profit_product(df))
         st.plotly_chart(dem_product(df))
         
