@@ -45,7 +45,6 @@ if file is not None:
         data.insert(0, [1000] * len(data_f.columns))
         data_f = pd.DataFrame(data, index = [0] + data_f.index.tolist(), columns = data_f.columns)
         data_f.columns.name = ''
-        
 	for col in range(0, data_f.shape[1]):
 		x = 1000
 		for row in range(0, len(data_f)):
