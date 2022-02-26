@@ -60,7 +60,7 @@ if file is not None:
         df_2 = data_f.loc[data_f['Round'] == 2]
         wdf_1 = wide_data(df_1)
         wdf_2 = wide_data(df_2)
-        wdf = pd.concat([wdf_1, wdf_2])
+        wdf = pd.concat([wdf_1, wdf_2]).reset_index().drop('Day', axis = 1)
         data_f = first_round(wdf)
         
         return data_f
@@ -73,7 +73,7 @@ if file is not None:
         wdf_2 = wide_data(df_2)
         wdf_3 = wide_data(df_3)
         
-        wdf = pd.concat([wdf_1, wdf_2, wdf_3])
+        wdf = pd.concat([wdf_1, wdf_2, wdf_3]).reset_index().drop('Day', axis = 1)
         data_f = first_round(wdf)
         
         return data_f
