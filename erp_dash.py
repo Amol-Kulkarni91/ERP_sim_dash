@@ -49,15 +49,13 @@ if file is not None:
         for col in range(0, data_f.shape[1]):
             x = 1000
             for row in range(0, len(data_f)):
-                if row != 0:
+		if row != 0:
 			if x < 0:
-				x = data_f.iloc[row, col] + x
-				data_f.iloc[row, col] = x
-			else:
-				x = x - data_f.iloc[row, col]
-				data_f.iloc[row, col] = x
-				
-        
+			x = data_f.iloc[row, col] + x
+			data_f.iloc[row, col] = x
+		else:
+			x = x - data_f.iloc[row, col]
+			data_f.iloc[row, col] = x		
         return data_f
     
     def second_round(data_f):
