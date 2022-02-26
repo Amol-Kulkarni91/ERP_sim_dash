@@ -46,8 +46,8 @@ if file is not None:
         data_f = pd.DataFrame(data, index = [0] + data_f.index.tolist(), columns = data_f.columns)
         data_f.columns.name = ''
         
-        for col in range(0, data_f.shape[1]):
-            x = 1000
+	for col in range(0, data_f.shape[1]):
+		x = 1000
 		for row in range(0, len(data_f)):
 			if row != 0:
 				if x < 0:
