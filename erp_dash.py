@@ -40,22 +40,22 @@ if file is not None:
         
         return data_f
     
-    def first_round(data_f):
-        data = data_f.to_numpy().tolist()
-        data.insert(0, [1000] * len(data_f.columns))
-        data_f = pd.DataFrame(data, index = [0] + data_f.index.tolist(), columns = data_f.columns)
-        data_f.columns.name = ''
-	for col in range(0, data_f.shape[1]):
-		x = 1000
-		for row in range(0, len(data_f)):
-			if row != 0:
-				if x < 0:
+	def first_round(data_f):
+		data = data_f.to_numpy().tolist()
+		data.insert(0, [1000] * len(data_f.columns))
+		data_f = pd.DataFrame(data, index = [0] + data_f.index.tolist(), columns = data_f.columns)
+		data_f.columns.name = ''
+		for col in range(0, data_f.shape[1]):
+			x = 1000
+			for row in range(0, len(data_f)):
+				if row != 0:
+					if x < 0:
 					x = data_f.iloc[row, col] + x
 					data_f.iloc[row, col] = x
-				else:
+					else:
 					x = x - data_f.iloc[row, col]
 					data_f.iloc[row, col] = x		
-        return data_f
+		return data_f
     
     def second_round(data_f):
         df_1 = data_f.loc[data_f['Round'] == 1]
