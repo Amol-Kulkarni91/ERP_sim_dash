@@ -75,7 +75,6 @@ if file is not None:
         return data_f
     
     def first_round(data_f):
-        data_f = wide_data(data_f)
         data_f = data_f.to_numpy().tolist()
         data_f.insert(0, [1000] * len(data_f.columns))
         data_f = pd.DataFrame(data_f, index = [0] + data_f.index.tolist(), columns = data_f.columns)
@@ -90,6 +89,13 @@ if file is not None:
         
         return data_f
 
+    def inv_chart(data_f):
+        st.subheader('Inventory')
+        data_f['Day'] = list(np.arange(1, len(df) + 1))
+        data_f.rename(columns = {'Day' : 'Day', '' : 'Products', 'value' : 'value'}, inplace = True)
+        chart_3 = px.line(data_f, x = 'Day', y = 'value', color = 'Products')
+        
+        return chart_3
     
     re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
     
@@ -123,6 +129,7 @@ if file is not None:
         
         
     else:
+        st.plotly_chart(inv_chart(first_round(wide_data(df))))
         st.plotly_chart(profit_product(df))
         st.plotly_chart(dem_product(df))
         
