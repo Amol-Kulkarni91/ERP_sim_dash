@@ -126,7 +126,7 @@ if file is not None:
 
         
         
-        st.line_chart(new_data)
+#         st.line_chart(new_data)
         st.plotly_chart(profit_product(df))
         st.plotly_chart(dem_product(df))
         
@@ -137,7 +137,7 @@ if file is not None:
         wid_data = wide_data(df)
         first_data = first_round(wid_data)
 
-#         st.plotly_chart(first_data)
+        st.plotly_chart(first_data)
         st.plotly_chart(profit_product(df))
         st.plotly_chart(dem_product(df))
         
