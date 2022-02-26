@@ -29,7 +29,7 @@ if file is not None:
 
 		return chart
     
-	 def wide_data(data_f):
+	def wide_data(data_f):
 		data_f = data_f.sort_values(by = 'Day')
 		data_f = data_f.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
 		data_f = pd.pivot_table(data_f, index = 'Day', columns = ['Material description'], values= 'Qty')
