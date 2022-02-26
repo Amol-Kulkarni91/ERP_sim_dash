@@ -26,7 +26,7 @@ if file is not None:
     def dem_product(data_f):
         st.subheader("Demand by Region")
         chart = px.histogram(data_f, x = 'Material description', y = 'Qty', color = 'Area', 
-                             barmode = 'group', facet_row = 'Round', height = 600, template = 'seaborn)
+                             barmode = 'group', facet_row = 'Round', height = 600, template = 'seaborn')
         chart.update_xaxes(None)
         chart.update_yaxes(title = 'Total Demand')
         
