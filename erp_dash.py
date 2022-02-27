@@ -173,17 +173,17 @@ if file is not None:
 			st.plotly_chart(profit_product(df))
 			st.plotly_chart(dem_product(df))
 
+	else:
+		if len(df['Round'].unique()) == 1:
+			st.plotly_chart(inv_chart(first_round(wide_data(df))))
+
+		elif len(df['Round'].unique()) == 2:
+			st.plotly_chart(inv_chart(second_round(df)))
 		else:
-			if len(df['Round'].unique()) == 1:
-				st.plotly_chart(inv_chart(first_round(wide_data(df))))
+			st.plotly_chart(inv_chart(third_round(df)))
 
-			elif len(df['Round'].unique()) == 2:
-				st.plotly_chart(inv_chart(second_round(df)))
-			else:
-				st.plotly_chart(inv_chart(third_round(df)))
-
-			st.plotly_chart(profit_product(df))
-			st.plotly_chart(dem_product(df))
+		st.plotly_chart(profit_product(df))
+		st.plotly_chart(dem_product(df))
         
         
 
