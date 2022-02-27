@@ -158,7 +158,7 @@ if file is not None:
 			new_data.loc[day_5_lemspritz - 1,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz - 1,'500mL Spritz'] + (ml_5_lemspritz*24)
 			new_data.loc[day_5_pure - 1,'500mL ClearPure'] = new_data.loc[day_5_pure - 1,'500mL Lemon Spritz'] - (ml_5_pure*24)
 			new_data.loc[day_1_spritz - 1,'1L Spritz'] = new_data.loc[day_1_spritz - 1,'500mL ClearPure'] - (l_1_spritz*12)
-			new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] + (l_1_lemspritz*12)
+			new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] - (l_1_lemspritz*12)
 			new_data.loc[day_1_pure - 1,'1L ClearPure'] = new_data.loc[day_1_pure - 1,'1L ClearPure'] - (l_1_pure*12)
 			st.plotly_chart(inv_chart(new_data))
 		else:
