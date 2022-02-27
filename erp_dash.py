@@ -54,9 +54,9 @@ if file is not None:
 		df_1 = wide_data(data_f.loc[data_f['Round'] == 1])
 		df_2 = wide_data(data_f.loc[data_f['Round'] == 2])
 		wdf = pd.concat([df_1, df_2]).reset_index().drop('Day', axis = 1)
-		data_f = first_round(wdf)
+		data_f = wdf
 
-		return data_f
+		return wdf
                              
 	def third_round(data_f):
 		df_1 = data_f.loc[data_f['Round'] == 1]
@@ -67,9 +67,9 @@ if file is not None:
 		wdf_3 = wide_data(df_3)
 
 		wdf = pd.concat([wdf_1, wdf_2, wdf_3]).reset_index().drop('Day', axis = 1)
-		data_f = first_round(wdf)
+		data_f = wdf
 
-		return data_f
+		return wdf
 
 	def inv_chart(data_f):
 		st.subheader('Inventory')
@@ -160,7 +160,7 @@ if file is not None:
 			new_data.loc[day_1_spritz - 1,'1L Spritz'] = new_data.loc[day_1_spritz - 1,'500mL ClearPure'] - (l_1_spritz*12)
 			new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] - (l_1_lemspritz*12)
 			new_data.loc[day_1_pure - 1,'1L ClearPure'] = new_data.loc[day_1_pure - 1,'1L ClearPure'] - (l_1_pure*12)
-			st.plotly_chart(inv_chart(new_data))
+			st.plotly_chart(inv_chart(first_round(new_data)))
 		else:
 
 			new_data.loc[day_5_spritz - 1,'500mL Spritz'] = new_data.loc[day_5_spritz - 1,'500mL Spritz'] - (ml_5_spritz*24)
@@ -169,7 +169,7 @@ if file is not None:
 			new_data.loc[day_1_spritz - 1,'1L Spritz'] = new_data.loc[day_1_spritz - 1,'500mL ClearPure'] - (l_1_spritz*12)
 			new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] - (l_1_lemspritz*12)
 			new_data.loc[day_1_pure - 1,'1L ClearPure'] = new_data.loc[day_1_pure - 1,'1L ClearPure'] - (l_1_pure*12)
-			st.plotly_chart(inv_chart(third_round(df)))
+			st.plotly_chart(inv_chart(first_round(new_data)))
 
 		st.plotly_chart(profit_product(df))
 		st.plotly_chart(dem_product(df))
