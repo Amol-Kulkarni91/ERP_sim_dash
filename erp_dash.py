@@ -51,10 +51,9 @@ if file is not None:
 		return data_f
     
 	def second_round(data_f):
-		df_1 = first_round(wide_data(data_f.loc[data_f['Round'] == 1]))
+		df_1 = wide_data(data_f.loc[data_f['Round'] == 1])
 		df_2 = wide_data(data_f.loc[data_f['Round'] == 2])
-		for col in range
-		wdf = pd.concat([wdf_1, wdf_2]).reset_index().drop('Day', axis = 1)
+		wdf = pd.concat([df_1, df_2]).reset_index().drop('Day', axis = 1)
 		data_f = first_round(wdf)
 
 		return data_f
