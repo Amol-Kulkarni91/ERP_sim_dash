@@ -44,7 +44,7 @@ if file is not None:
 		data_f.columns.name = ''
 		for col in range(0, data_f.shape[1]):
 			x = 1000
-			for row in range(0, len(data_f)):
+			for row in range(0, data_f.shape[0])):
 				if row != 0:
 					x = x - data_f.iloc[row, col]
 					data_f.iloc[row, col] = x		
