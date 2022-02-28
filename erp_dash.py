@@ -143,15 +143,21 @@ if file is not None:
 
 		return chart_2
 	
-    	def update_data(sp5_q, lsp5_q, cp5_q, sp1_q, lsp1_q, cp1_q, sp5_d, lsp5_d, cp5_d, sp1_d, lsp1_d, cp1_d, data_f):
+	def update_data(sp5_q, lsp5_q, cp5_q, sp1_q, lsp1_q, cp1_q, sp5_d, lsp5_d, cp5_d, sp1_d, lsp1_d, cp1_d, data_f):
 		
-		data_f.loc[sp5_d - 1,'500mL Spritz'] = data_f.loc[sp5_d - 1,'500mL Spritz'] - (sp5_q*24)
-		data_f.loc[lsp5_d - 1,'500mL Lemon Spritz'] = data_f.loc[lsp5_d - 1,'500mL Spritz'] - (lsp5_q*24)
-		data_f.loc[cp5_d - 1,'500mL ClearPure'] = data_f.loc[cp5_d - 1,'500mL Lemon Spritz'] + (cp5_q*24)
-		data_f.loc[sp1_d - 1,'1L Spritz'] = data_f.loc[sp1_d - 1,'500mL ClearPure'] - (sp1_q*12)
-		data_f.loc[lsp1_d - 1,'1L Lemon Spritz'] = data_f.loc[lsp1_d - 1,'1L Lemon Spritz'] + (lsp1_q*12)
-		data_f.loc[cp1_d - 1,'1L ClearPure'] = data_f.loc[cp1_d - 1,'1L ClearPure'] - (cp1_q*12)
-		
+		for i in range(0, len(sp5_d)):
+			data_f.loc[sp5_d[i] - 1,'500mL Spritz'] = data_f.loc[sp5_d[i] - 1,'500mL Spritz'] - (sp5_q[i]*24)
+		for j in range(0, len(lsp5_d)):
+			data_f.loc[lsp5_d[j] - 1,'500mL Lemon Spritz'] = data_f.loc[lsp5_d[j] - 1,'500mL Spritz'] - (lsp5_q[j]*24)
+		for k in range(0, len(cp5_d)):
+			data_f.loc[cp5_d[k] - 1,'500mL ClearPure'] = data_f.loc[cp5_d[k] - 1,'500mL Lemon Spritz'] + (cp5_q[k]*24)
+		for l in range(0, len(sp1_d)):
+			data_f.loc[sp1_d[l] - 1,'1L Spritz'] = data_f.loc[sp1_d[l] - 1,'500mL ClearPure'] - (sp1_q[l]*12)
+		for m in range(0, len(lsp1_d)):
+			data_f.loc[lsp1_d[m] - 1,'1L Lemon Spritz'] = data_f.loc[lsp1_d[m] - 1,'1L Lemon Spritz'] + (lsp1_q[m]*12)
+		for n in range(0, len(cp1_d)):
+			data_f.loc[cp1_d[n] - 1,'1L ClearPure'] = data_f.loc[cp1_d[n] - 1,'1L ClearPure'] - (cp1_q[n]*12)
+
 		return data_f
     
 	re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
@@ -160,12 +166,12 @@ if file is not None:
 		st.sidebar.subheader('Reorder Quantity Information')
 		with st.sidebar.form(key='my_form'):
 
-			ml_5_spritz = st.sidebar.number_input('Quantity of 500mL Spritz reordered', min_value=1, step=1)
-			ml_5_lemspritz = st.sidebar.number_input('Quantity of 500mL Lemon Spritz reordered', min_value=1, step=1)
-			ml_5_pure = st.sidebar.number_input('Quantity of 500mL ClearPure reordered', min_value=1, step=1)
-			l_1_spritz = st.sidebar.number_input('Quantity of 1L Spritz reordered', min_value=1, step=1)
-			l_1_lemspritz = st.sidebar.number_input('Quantity of 1L Lemon Spritz reordered', min_value=1, step=1)
-			l_1_pure = st.sidebar.number_input('Quantity of 1L ClearPure reordered', min_value=1, step=1)
+			ml_5_spritz = st.sidebar.number_input('Quantity of 500mL Spritz reordered', min_value=0, step=1)
+			ml_5_lemspritz = st.sidebar.number_input('Quantity of 500mL Lemon Spritz reordered', min_value=0, step=1)
+			ml_5_pure = st.sidebar.number_input('Quantity of 500mL ClearPure reordered', min_value=0, step=1)
+			l_1_spritz = st.sidebar.number_input('Quantity of 1L Spritz reordered', min_value=0, step=1)
+			l_1_lemspritz = st.sidebar.number_input('Quantity of 1L Lemon Spritz reordered', min_value=0, step=1)
+			l_1_pure = st.sidebar.number_input('Quantity of 1L ClearPure reordered', min_value=0, step=1)
 
 			st.sidebar.subheader('Delivery Day')
 
@@ -178,11 +184,26 @@ if file is not None:
 			submit_button = st.form_submit_button(label='Submit')
 			
 		if submit_button:
+			st.session_state['spritz5ml_q'].append(ml_5_spritz)
+			st.session_state['lemspritz5ml_q'].append(ml_5_lemspritz)
+			st.session_state['pure5ml_q'].append(ml_5_pure)
+			st.session_state['spritz_q'].append(l_1_spritz)
+			st.session_state['lemspritz_q'].append(l_1_lemspritz)
+			st.session_state['pure_q'].append(l_1_pure)
+			st.session_state['spritz5ml_d'].append(day_5_spritz)
+			st.session_state['lemspritz5ml_d'].append(day_5_lemspritz)
+			st.session_state['pure5ml_d'].append(day_5_pure)
+			st.session_state['spritz_d'].append(day_1_spritz)
+			st.session_state['lemspritz_d'].append(day_1_lemspritz)
+			st.session_state['pure_d'].append(day_1_pure)
+			
 
 			if len(df['Round'].unique()) == 1:
 				new_data = wide_data(df)
-				new_data = update_data(ml_5_spritz, ml_5_lemspritz, ml_5_pure, l_1_spritz, l_1_lemspritz, l_1_pure, 
-						       day_5_spritz, day_5_lemspritz, day_5_pure, day_1_spritz, day_1_lemspritz, day_1_pure, new_data)
+				new_data = update_data(st.session_state['spritz5ml_q'], st.session_state['lemspritz5ml_q'], st.session_state['pure5ml_q'], 
+						       st.session_state['spritz_q'], st.session_state['lemspritz_q'], st.session_state['pure_q'], 
+						       st.session_state['spritz5ml_d'], st.session_state['lemspritz5ml_d'], st.session_state['pure5ml_d'], 
+						       st.session_state['spritz_d'], st.session_state['lemspritz_d'], st.session_state['pure_d'], new_data)
 				st.plotly_chart(inv_chart(first_round(new_data)))
 
 			elif len(df['Round'].unique()) == 2:
