@@ -141,7 +141,7 @@ if file is not None:
 			day_1_lemspritz = st.sidebar.number_input('Scheduled Delivery of 1L Lemon Spritz', min_value = 1, max_value = 60, step = 1)
 			day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 60, step = 1)
 			submit_button = st.form_submit_button(label='Submit')
-			if submit:
+			if submit_button:
 
 				if len(df['Round'].unique()) == 1:
 					new_data = wide_data(df)
