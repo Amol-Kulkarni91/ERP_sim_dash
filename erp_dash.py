@@ -123,7 +123,7 @@ if file is not None:
     
 	if re_ord == "Yes":
 		st.sidebar.subheader('Reorder Quantity Information')
-		with st.sidebar.form(key='my_form'):
+		with st.form(key='my_form'):
 
 			ml_5_spritz = st.sidebar.number_input('Quantity of 500mL Spritz reordered', min_value=1, step=1)
 			ml_5_lemspritz = st.sidebar.number_input('Quantity of 500mL Lemon Spritz reordered', min_value=1, step=1)
