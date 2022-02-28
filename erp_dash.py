@@ -19,29 +19,29 @@ file = st.sidebar.file_uploader("Please upload the sales order report")
 if file is not None:
 	st.sidebar.success('File uploaded Succesfully')
 	
-	if 'spritz5ml_q' not in session_state:
+	if 'spritz5ml_q' not in st.session_state:
 		st.session_state['spritz5ml_q'] = []
-	if 'lemspritz5ml_q' not in session_state:
+	if 'lemspritz5ml_q' not in st.session_state:
 		st.session_state['lemspritz5ml_q'] = []
-	if 'pure5ml_q' not in session_state:
+	if 'pure5ml_q' not in st.session_state:
 		st.session_state['pure5ml_q'] = []
-	if 'spritz_q' not in session_state:
+	if 'spritz_q' not in st.session_state:
 		st.session_state['spritz_q'] = []
-	if 'lemspritz_q' not in session_state:
+	if 'lemspritz_q' not in st.session_state:
 		st.session_state['lemspritz_q'] = []
-	if 'pure_q' not in session_state:
+	if 'pure_q' not in st.session_state:
 		st.session_state['pure_q'] = []
-	if 'spritz5ml_d' not in session_state:
+	if 'spritz5ml_d' not in st.session_state:
 		st.session_state['spritz5ml_d'] = []
-	if 'lemspritz5ml_d' not in session_state:
+	if 'lemspritz5ml_d' not in st.session_state:
 		st.session_state['lemspritz5ml_d'] = []
-	if 'pure5ml_d' not in session_state:
+	if 'pure5ml_d' not in st.session_state:
 		st.session_state['pure5ml_d'] = []
-	if 'spritz_d' not in session_state:
+	if 'spritz_d' not in st.session_state:
 		st.session_state['spritz_d'] = []
-	if 'lemspritz_d' not in session_state:
+	if 'lemspritz_d' not in st.session_state:
 		st.session_state['lemspritz_d'] = []
-	if 'pure_d' not in session_state:
+	if 'pure_d' not in st.session_state:
 		st.session_state['pure_d'] = []
 		
 	df = pd.read_excel(file)
