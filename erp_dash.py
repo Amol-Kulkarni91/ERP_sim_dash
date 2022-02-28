@@ -116,8 +116,17 @@ if file is not None:
 
 
 		return chart_2
-    
-    
+	
+    	def update_data(sp5_q, lsp5_q, cp5_q, sp1_q, lsp1_q, cp1_q, sp5_d, lsp5_d, cp5_d, sp1_d, lsp1_d, cp1_d, data_f):
+		
+		data_f.loc[sp5_d - 1,'500mL Spritz'] = data_f.loc[sp5_d - 1,'500mL Spritz'] - (sp5_q*24)
+		data_f.loc[lsp5_d - 1,'500mL Lemon Spritz'] = data_f.loc[lsp5_d - 1,'500mL Spritz'] - (lsp5_q*24)
+		data_f.loc[cp5_d - 1,'500mL ClearPure'] = data_f.loc[cp5_d - 1,'500mL Lemon Spritz'] + (cp5_q*24)
+		data_f.loc[sp1_d - 1,'1L Spritz'] = data_f.loc[sp1_d - 1,'500mL ClearPure'] - (sp1_q*12)
+		data_f.loc[lsp1_d - 1,'1L Lemon Spritz'] = data_f.loc[lsp1_d - 1,'1L Lemon Spritz'] + (lsp1_q*12)
+		data_f.loc[cp1_d - 1,'1L ClearPure'] = data_f.loc[cp1_d - 1,'1L ClearPure'] - (cp1_q*12)
+		
+		return data_f
     
 	re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
     
@@ -146,31 +155,19 @@ if file is not None:
 
 			if len(df['Round'].unique()) == 1:
 				new_data = wide_data(df)
-				new_data.loc[day_5_spritz - 1,'500mL Spritz'] = new_data.loc[day_5_spritz - 1,'500mL Spritz'] - (ml_5_spritz*24)
-				new_data.loc[day_5_lemspritz - 1,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz - 1,'500mL Spritz'] - (ml_5_lemspritz*24)
-				new_data.loc[day_5_pure - 1,'500mL ClearPure'] = new_data.loc[day_5_pure - 1,'500mL Lemon Spritz'] + (ml_5_pure*24)
-				new_data.loc[day_1_spritz - 1,'1L Spritz'] = new_data.loc[day_1_spritz - 1,'500mL ClearPure'] - (l_1_spritz*12)
-				new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] + (l_1_lemspritz*12)
-				new_data.loc[day_1_pure - 1,'1L ClearPure'] = new_data.loc[day_1_pure - 1,'1L ClearPure'] - (l_1_pure*12)
+				new_data = update_data(ml_5_spritz, ml_5_lemspritz, ml_5_pure, l_1_spritz, l_1_lemspritz, l_1_pure, 
+						       day_5_spritz, day_5_lemspritz, day_5_pure, day_1_spritz, day_1_lemspritz, day_1_pure, new_data)
 				st.plotly_chart(inv_chart(first_round(new_data)))
 
 			elif len(df['Round'].unique()) == 2:
 				new_data = second_round(df)
-				new_data.loc[day_5_spritz - 1,'500mL Spritz'] = new_data.loc[day_5_spritz - 1,'500mL Spritz'] - (ml_5_spritz*24)
-				new_data.loc[day_5_lemspritz - 1,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz - 1,'500mL Spritz'] + (ml_5_lemspritz*24)
-				new_data.loc[day_5_pure - 1,'500mL ClearPure'] = new_data.loc[day_5_pure - 1,'500mL Lemon Spritz'] - (ml_5_pure*24)
-				new_data.loc[day_1_spritz - 1,'1L Spritz'] = new_data.loc[day_1_spritz - 1,'500mL ClearPure'] - (l_1_spritz*12)
-				new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] - (l_1_lemspritz*12)
-				new_data.loc[day_1_pure - 1,'1L ClearPure'] = new_data.loc[day_1_pure - 1,'1L ClearPure'] - (l_1_pure*12)
+				new_data = update_data(ml_5_spritz, ml_5_lemspritz, ml_5_pure, l_1_spritz, l_1_lemspritz, l_1_pure, 
+						       day_5_spritz, day_5_lemspritz, day_5_pure, day_1_spritz, day_1_lemspritz, day_1_pure, new_data)
 				st.plotly_chart(inv_chart(first_round(new_data)))
 			else:
 				new_data = third_round(df)
-				new_data.loc[day_5_spritz - 1,'500mL Spritz'] = new_data.loc[day_5_spritz - 1,'500mL Spritz'] - (ml_5_spritz*24)
-				new_data.loc[day_5_lemspritz - 1,'500mL Lemon Spritz'] = new_data.loc[day_5_lemspritz - 1,'500mL Spritz'] - (ml_5_lemspritz*24)
-				new_data.loc[day_5_pure - 1,'500mL ClearPure'] = new_data.loc[day_5_pure - 1,'500mL Lemon Spritz'] - (ml_5_pure*24)
-				new_data.loc[day_1_spritz - 1,'1L Spritz'] = new_data.loc[day_1_spritz - 1,'500mL ClearPure'] - (l_1_spritz*12)
-				new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] = new_data.loc[day_1_lemspritz - 1,'1L Lemon Spritz'] - (l_1_lemspritz*12)
-				new_data.loc[day_1_pure - 1,'1L ClearPure'] = new_data.loc[day_1_pure - 1,'1L ClearPure'] - (l_1_pure*12)
+				new_data = update_data(ml_5_spritz, ml_5_lemspritz, ml_5_pure, l_1_spritz, l_1_lemspritz, l_1_pure, 
+						       day_5_spritz, day_5_lemspritz, day_5_pure, day_1_spritz, day_1_lemspritz, day_1_pure, new_data)
 				st.plotly_chart(inv_chart(first_round(new_data)))
 
 			st.plotly_chart(profit_product(df))
