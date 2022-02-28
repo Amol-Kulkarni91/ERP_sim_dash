@@ -146,17 +146,23 @@ if file is not None:
 	def update_data(sp5_q, lsp5_q, cp5_q, sp1_q, lsp1_q, cp1_q, sp5_d, lsp5_d, cp5_d, sp1_d, lsp1_d, cp1_d, data_f):
 		
 		for i in range(0, len(sp5_d)):
-			data_f.loc[sp5_d[i] - 1,'500mL Spritz'] = data_f.loc[sp5_d[i] - 1,'500mL Spritz'] - (sp5_q[i]*24)
+			if sp5_d[0] != 0:
+				data_f.loc[sp5_d[i] - 1,'500mL Spritz'] = data_f.loc[sp5_d[i] - 1,'500mL Spritz'] - (sp5_q[i]*24)
 		for j in range(0, len(lsp5_d)):
-			data_f.loc[lsp5_d[j] - 1,'500mL Lemon Spritz'] = data_f.loc[lsp5_d[j] - 1,'500mL Spritz'] - (lsp5_q[j]*24)
+			if lsp5_d[0] != 0:
+				data_f.loc[lsp5_d[j] - 1,'500mL Lemon Spritz'] = data_f.loc[lsp5_d[j] - 1,'500mL Spritz'] - (lsp5_q[j]*24)
 		for k in range(0, len(cp5_d)):
-			data_f.loc[cp5_d[k] - 1,'500mL ClearPure'] = data_f.loc[cp5_d[k] - 1,'500mL Lemon Spritz'] + (cp5_q[k]*24)
+			if cp5_d[0] != 0:
+				data_f.loc[cp5_d[k] - 1,'500mL ClearPure'] = data_f.loc[cp5_d[k] - 1,'500mL Lemon Spritz'] + (cp5_q[k]*24)
 		for l in range(0, len(sp1_d)):
-			data_f.loc[sp1_d[l] - 1,'1L Spritz'] = data_f.loc[sp1_d[l] - 1,'500mL ClearPure'] - (sp1_q[l]*12)
+			if sp1_d[0] != 0:
+				data_f.loc[sp1_d[l] - 1,'1L Spritz'] = data_f.loc[sp1_d[l] - 1,'500mL ClearPure'] - (sp1_q[l]*12)
 		for m in range(0, len(lsp1_d)):
-			data_f.loc[lsp1_d[m] - 1,'1L Lemon Spritz'] = data_f.loc[lsp1_d[m] - 1,'1L Lemon Spritz'] + (lsp1_q[m]*12)
+			if lsp1_d[0] != 0:
+				data_f.loc[lsp1_d[m] - 1,'1L Lemon Spritz'] = data_f.loc[lsp1_d[m] - 1,'1L Lemon Spritz'] + (lsp1_q[m]*12)
 		for n in range(0, len(cp1_d)):
-			data_f.loc[cp1_d[n] - 1,'1L ClearPure'] = data_f.loc[cp1_d[n] - 1,'1L ClearPure'] - (cp1_q[n]*12)
+			if cp1_d[0] != 0:
+				data_f.loc[cp1_d[n] - 1,'1L ClearPure'] = data_f.loc[cp1_d[n] - 1,'1L ClearPure'] - (cp1_q[n]*12)
 
 		return data_f
     
