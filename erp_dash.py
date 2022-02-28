@@ -214,13 +214,17 @@ if file is not None:
 
 			elif len(df['Round'].unique()) == 2:
 				new_data = second_round(df)
-				new_data = update_data(ml_5_spritz, ml_5_lemspritz, ml_5_pure, l_1_spritz, l_1_lemspritz, l_1_pure, 
-						       day_5_spritz, day_5_lemspritz, day_5_pure, day_1_spritz, day_1_lemspritz, day_1_pure, new_data)
+				new_data = update_data(st.session_state['spritz5ml_q'], st.session_state['lemspritz5ml_q'], st.session_state['pure5ml_q'], 
+						       st.session_state['spritz_q'], st.session_state['lemspritz_q'], st.session_state['pure_q'], 
+						       st.session_state['spritz5ml_d'], st.session_state['lemspritz5ml_d'], st.session_state['pure5ml_d'], 
+						       st.session_state['spritz_d'], st.session_state['lemspritz_d'], st.session_state['pure_d'], new_data)
 				st.plotly_chart(inv_chart(first_round(new_data)))
 			else:
 				new_data = third_round(df)
-				new_data = update_data(ml_5_spritz, ml_5_lemspritz, ml_5_pure, l_1_spritz, l_1_lemspritz, l_1_pure, 
-						       day_5_spritz, day_5_lemspritz, day_5_pure, day_1_spritz, day_1_lemspritz, day_1_pure, new_data)
+				new_data = update_data(st.session_state['spritz5ml_q'], st.session_state['lemspritz5ml_q'], st.session_state['pure5ml_q'], 
+						       st.session_state['spritz_q'], st.session_state['lemspritz_q'], st.session_state['pure_q'], 
+						       st.session_state['spritz5ml_d'], st.session_state['lemspritz5ml_d'], st.session_state['pure5ml_d'], 
+						       st.session_state['spritz_d'], st.session_state['lemspritz_d'], st.session_state['pure_d'], new_data)
 				st.plotly_chart(inv_chart(first_round(new_data)))
 
 			st.plotly_chart(profit_product(df))
