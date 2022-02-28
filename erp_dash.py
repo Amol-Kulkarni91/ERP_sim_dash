@@ -181,12 +181,12 @@ if file is not None:
 
 			st.sidebar.subheader('Delivery Day')
 
-			day_5_spritz = st.sidebar.number_input('Scheduled Delivery of 500 mL Spritz', min_value = 1, max_value = 60, step = 1)
-			day_5_lemspritz = st.sidebar.number_input('Scheduled Delivery of 500 mL Lemon Spritz', min_value = 1, max_value = 60, step = 1)
-			day_5_pure = st.sidebar.number_input('Scheduled Delivery of 500 mL ClearPure', min_value = 1, max_value = 60, step = 1)
-			day_1_spritz = st.sidebar.number_input('Scheduled Delivery of 1L Spritz', min_value = 1, max_value = 60, step = 1)
-			day_1_lemspritz = st.sidebar.number_input('Scheduled Delivery of 1L Lemon Spritz', min_value = 1, max_value = 60, step = 1)
-			day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 1, max_value = 60, step = 1)
+			day_5_spritz = st.sidebar.number_input('Scheduled Delivery of 500 mL Spritz', min_value = 0, max_value = 60, step = 1)
+			day_5_lemspritz = st.sidebar.number_input('Scheduled Delivery of 500 mL Lemon Spritz', min_value = 0, max_value = 60, step = 1)
+			day_5_pure = st.sidebar.number_input('Scheduled Delivery of 500 mL ClearPure', min_value = 0, max_value = 60, step = 1)
+			day_1_spritz = st.sidebar.number_input('Scheduled Delivery of 1L Spritz', min_value = 0, max_value = 60, step = 1)
+			day_1_lemspritz = st.sidebar.number_input('Scheduled Delivery of 1L Lemon Spritz', min_value = 0, max_value = 60, step = 1)
+			day_1_pure = st.sidebar.number_input('Scheduled Delivery of 1L ClearPure', min_value = 0, max_value = 60, step = 1)
 			submit_button = st.form_submit_button(label='Submit')
 			
 		if submit_button:
