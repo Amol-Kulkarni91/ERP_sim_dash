@@ -82,7 +82,7 @@ if file is not None:
 					temp_df1.loc[(temp_df1['Round'] == 2) & (temp_df1['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
 				elif i[1]['Goods'][0] == 3:
 					temp_df1.loc[(temp_df1['Round'] == 3) & (temp_df1['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
-				else:
+				elif i[1]['Goods'] == 'N.Sch':
 					temp_df1.loc[(temp_df1['Round'] == temp_df1['Round'].unique().max()) & (temp_df1['Day'] == 1), 'Qty'] -= i[1]['Quantity']
 					
 			elif i[1]["Material Description"] == "500mL Lemon Spritz":
@@ -92,7 +92,7 @@ if file is not None:
 					temp_df2.loc[(temp_df2['Round'] == 2) & (temp_df2['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
 				elif i[1]['Goods'][0] == 3:
 					temp_df2.loc[(temp_df2['Round'] == 3) & (temp_df2['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
-				else:
+				elif i[1]['Goods'] == 'N.Sch':
 					temp_df2.loc[(temp_df2['Round'] == temp_df2['Round'].unique().max()) & (temp_df2['Day'] == 1), 'Qty'] -= i[1]['Quantity']
 					
 			elif i[1]["Material Description"] == "500mL ClearPure":
@@ -102,7 +102,7 @@ if file is not None:
 					temp_df3.loc[(temp_df3['Round'] == 2) & (temp_df3['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
 				elif i[1]['Goods'][0] == 3:
 					temp_df3.loc[(temp_df3['Round'] == 3) & (temp_df3['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
-				else:
+				elif i[1]['Goods'] == 'N.Sch':
 					temp_df3.loc[(temp_df3['Round'] == temp_df3['Round'].unique().max()) & (temp_df3['Day'] == 1), 'Qty'] -= i[1]['Quantity']
 					
 			elif i[1]["Material Description"] == "1L Spritz":
@@ -112,7 +112,7 @@ if file is not None:
 					temp_df4.loc[(temp_df4['Round'] == 2) & (temp_df4['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
 				elif i[1]['Goods'][0] == 3:
 					temp_df4.loc[(temp_df4['Round'] == 3) & (temp_df4['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
-				else:
+				elif i[1]['Goods'] == 'N.Sch':
 					temp_df4.loc[(temp_df4['Round'] == temp_df4['Round'].unique().max()) & (temp_df4['Day'] == 1), 'Qty'] -= i[1]['Quantity']
 				
 			elif i[1]["Material Description"] == "1L Lemon Spritz":
@@ -122,7 +122,7 @@ if file is not None:
 					temp_df5.loc[(temp_df5['Round'] == 2) & (temp_df5['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
 				elif i[1]['Goods'][0] == 3:
 					temp_df5.loc[(temp_df5['Round'] == 3) & (temp_df5['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
-				else:
+				elif i[1]['Goods'] == 'N.Sch':
 					temp_df5.loc[(temp_df5['Round'] == temp_df5['Round'].unique().max()) & (temp_df5['Day'] == 1), 'Qty'] -= i[1]['Quantity']
 					
 			elif i[1]["Material Description"] == "1L ClearPure":
@@ -132,7 +132,7 @@ if file is not None:
 					temp_df6.loc[(temp_df6['Round'] == 2) & (temp_df6['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']		
 				elif i[1]['Goods'][0] == 3:
 					temp_df6.loc[(temp_df6['Round'] == 3) & (temp_df6['Day'] == int(i[1]['Goods'][2:4])), 'Qty'] -= i[1]['Quantity']
-				else:
+				elif i[1]['Goods'] == 'N.Sch':
 					temp_df6.loc[(temp_df6['Round'] == temp_df6['Round'].unique().max()) & (temp_df6['Day'] == 1), 'Qty'] -= i[1]['Quantity']
 		
 		data_f = pd.concat([temp_df1, temp_df2, temp_df3, temp_df4, temp_df5, temp_df6])
