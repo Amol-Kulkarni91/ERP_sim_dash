@@ -187,15 +187,15 @@ if file is not None:
 	re_ord = st.sidebar.radio("Did you reorder?", ("Yes", "No"), index = 1)
     
 	if re_ord == "Yes":
-		st.sidebar.subheader('Reorder Quantity Information')
 		file1 = st.sidebar.file_uploader("Please upload the Purchase order tracking report")
-		st.sidebar.success('File uploaded Succesfully')
-		
-		df1 = pd.read_excel(file1)
-		new_data = inv_calc(wide_data(update_data(df1, df)))
-		st.plotly_chart(inv_chart(new_data))
-		st.plotly_chart(profit_product(df))
-		st.plotly_chart(dem_product(df))
+		if file1 is not None:
+			st.sidebar.success('File uploaded Succesfully')
+
+			df1 = pd.read_excel(file1)
+			new_data = inv_calc(wide_data(update_data(df1, df)))
+			st.plotly_chart(inv_chart(new_data))
+			st.plotly_chart(profit_product(df))
+			st.plotly_chart(dem_product(df))
 
 	else:
 # 		x=0
