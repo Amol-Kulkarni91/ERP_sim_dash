@@ -198,6 +198,7 @@ if file is not None:
 		st.plotly_chart(dem_product(df))
 
 	else:
+# 		x=0
 		new_data = inv_calc(wide_data(df))
 		st.plotly_chart(inv_chart(new_data))
 		st.plotly_chart(profit_product(df))
