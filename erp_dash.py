@@ -67,19 +67,14 @@ if file is not None:
 	
 	def update_data(data_f1, data_f2):
 		
+		data_f2 = data_f2.groupby(['Round', 'Day', 'Material description'])['Qty'].sum().reset_index()
 		temp_df1 = data_f2.loc[data_f2['Material description'] == '500mL Spritz']
-		temp_df1 = temp_df1.groupby(['Round', 'Day', 'Material description'])['Qty'].sum().reset_index()
 		temp_df2 = data_f2.loc[data_f2['Material description'] == '500mL Lemon Spritz']
-		temp_df1 = temp_df2.groupby(['Round', 'Day', 'Material description'])['Qty'].sum().reset_index()
 		temp_df3 = data_f2.loc[data_f2['Material description'] == '500mL ClearPure']
-		temp_df3 = temp_df3.groupby(['Round', 'Day', 'Material description'])['Qty'].sum().reset_index()
 		temp_df4 = data_f2.loc[data_f2['Material description'] == '1L Spritz']
-		temp_df4 = temp_df4.groupby(['Round', 'Day', 'Material description'])['Qty'].sum().reset_index()
 		temp_df5 = data_f2.loc[data_f2['Material description'] == '1L Lemon Spritz']
-		temp_df5 = temp_df5.groupby(['Round', 'Day', 'Material description'])['Qty'].sum().reset_index()
 		temp_df6 = data_f2.loc[data_f2['Material description'] == '1L ClearPure']
-		temp_df6 = temp_df6.groupby(['Round', 'Day', 'Material description'])['Qty'].sum().reset_index()
-		
+
 		for i in data_f1.iterrows():
 			if i[1]["Material Description"] == "500mL Spritz":
 				if i[1]['Goods'][0] == '1':
