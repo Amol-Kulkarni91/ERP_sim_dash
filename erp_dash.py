@@ -147,13 +147,28 @@ if file is not None:
 			wdf = data_f.fillna(0)
 		
 		elif len(data_f.loc[:, 'Round'].unique()) == 2:
-			tdf_1 = wide_data(data_f.loc[data_f['Round'] == 1])
-			tdf_2 = wide_data(data_f.loc[data_f['Round'] == 2])
+			tdf_1 = data_f.loc[data_f['Round'] == 1]
+			tdf_2 = data_f.loc[data_f['Round'] == 2]
+			tdf_1 = tdf_1.sort_values(by = 'Day')
+			tfd_1 = tdf_1.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
+			tdf_1 = pd.pivot_table(tdf_1, index = 'Day', columns = ['Material description'], values= 'Qty')
+			tdf_2 = tdf_2.sort_values(by = 'Day')
+			tfd_2 = tdf_2.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
+			tdf_2 = pd.pivot_table(tdf_2, index = 'Day', columns = ['Material description'], values= 'Qty')
 			wdf = pd.concat([tdf_1, tdf_2]).reset_index().drop('Day', axis = 1)
 		else:
 			tdf_1 = wide_data(data_f.loc[data_f['Round'] == 1])
 			tdf_2 = wide_data(data_f.loc[data_f['Round'] == 2])
 			tdf_3 = wide_data(data_f.loc[data_f['Round'] == 3])
+			tdf_1 = tdf_1.sort_values(by = 'Day')
+			tfd_1 = tdf_1.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
+			tdf_1 = pd.pivot_table(tdf_1, index = 'Day', columns = ['Material description'], values= 'Qty')
+			tdf_2 = tdf_2.sort_values(by = 'Day')
+			tfd_2 = tdf_2.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
+			tdf_2 = pd.pivot_table(tdf_2, index = 'Day', columns = ['Material description'], values= 'Qty')
+			tdf_3 = tdf_1.sort_values(by = 'Day')
+			tfd_3 = tdf_1.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
+			tdf_3 = pd.pivot_table(tdf_3, index = 'Day', columns = ['Material description'], values= 'Qty')
 			wdf = pd.concat([tdf_1, tdf_2, tdf_3]).reset_index().drop('Day', axis = 1)
 			
 
