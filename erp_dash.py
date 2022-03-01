@@ -151,7 +151,7 @@ if file is not None:
 			tdf_1 = data_f.loc[data_f['Round'] == 1]
 			tdf_2 = data_f.loc[data_f['Round'] == 2]
 			tdf_1 = tdf_1.sort_values(by = 'Day')
-			tfd_1 = tdf_1.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
+			tdf_1 = tdf_1.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
 			tdf_1 = pd.pivot_table(tdf_1, index = 'Day', columns = ['Material description'], values= 'Qty')
 			tdf_2 = tdf_2.sort_values(by = 'Day')
 			tfd_2 = tdf_2.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
@@ -163,7 +163,7 @@ if file is not None:
 			tdf_2 = wide_data(data_f.loc[data_f['Round'] == 2])
 			tdf_3 = wide_data(data_f.loc[data_f['Round'] == 3])
 			tdf_1 = tdf_1.sort_values(by = 'Day')
-			tfd_1 = tdf_1.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
+			tdf_1 = tdf_1.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
 			tdf_1 = pd.pivot_table(tdf_1, index = 'Day', columns = ['Material description'], values= 'Qty')
 			tdf_2 = tdf_2.sort_values(by = 'Day')
 			tfd_2 = tdf_2.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
