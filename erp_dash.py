@@ -140,13 +140,13 @@ if file is not None:
 	
 	def wide_data(data_f):
 		
-		if len(data_f.loc['Round'].unique()) == 1:			
+		if len(data_f.loc[:, 'Round'].unique()) == 1:			
 			data_f = data_f.sort_values(by = 'Day')
 			data_f = data_f.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
 			data_f = pd.pivot_table(data_f, index = 'Day', columns = ['Material description'], values= 'Qty')
 			data_f = data_f.fillna(0)
 		
-		elif len(data_f.loc['Round'].unique()) == 2:
+		elif len(data_f.loc[:, 'Round'].unique()) == 2:
 			tdf_1 = wide_data(data_f.loc[data_f['Round'] == 1])
 			tdf_2 = wide_data(data_f.loc[data_f['Round'] == 2])
 			wdf = pd.concat([tdf_1, tdf_2]).reset_index().drop('Day', axis = 1)
