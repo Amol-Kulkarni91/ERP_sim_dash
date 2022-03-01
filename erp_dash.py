@@ -159,9 +159,9 @@ if file is not None:
 			data_f = pd.concat([tdf_1, tdf_2]).reset_index().drop('Day', axis = 1)
 			wdf = data_f.fillna(0)
 		else:
-			tdf_1 = wide_data(data_f.loc[data_f['Round'] == 1])
-			tdf_2 = wide_data(data_f.loc[data_f['Round'] == 2])
-			tdf_3 = wide_data(data_f.loc[data_f['Round'] == 3])
+			tdf_1 = data_f.loc[data_f['Round'] == 1]
+			tdf_2 = data_f.loc[data_f['Round'] == 2]
+			tdf_3 = data_f.loc[data_f['Round'] == 3]
 			tdf_1 = tdf_1.sort_values(by = 'Day')
 			tdf_1 = tdf_1.groupby(['Day', 'Material description'])['Qty'].sum().reset_index()
 			tdf_1 = pd.pivot_table(tdf_1, index = 'Day', columns = ['Material description'], values= 'Qty')
