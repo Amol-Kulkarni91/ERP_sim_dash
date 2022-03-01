@@ -135,8 +135,7 @@ if file is not None:
 				else:
 					temp_df6.loc[(temp_df6['Round'] == temp_df6['Round'].unique().max()) and (temp_df6['Day'] == 1), 'Qty'] -= i[1]['Quantity']
 		
-		 data_f = pd.concat([temp_df1, temp_df2, temp_df3, temp_df4, temp_df5, temp_df6])
-		
+		data_f = pd.concat([temp_df1, temp_df2, temp_df3, temp_df4, temp_df5, temp_df6])
 		return data_f
 	
 	def wide_data(data_f):
