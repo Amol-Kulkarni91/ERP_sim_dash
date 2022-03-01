@@ -133,7 +133,7 @@ if file is not None:
 				elif i[1]['Goods'][0] == 3:
 					temp_df6.loc[(temp_df6['Round'] == 3) & (temp_df6['Day'] == i[1]['Goods'][3]), 'Qty'] -= i[1]['Quantity']
 				else:
-					temp_df6.loc[(temp_df6['Round'] == temp_df6['Round'].unique().max()) and (temp_df6['Day'] == 1), 'Qty'] -= i[1]['Quantity']
+					temp_df6.loc[(temp_df6['Round'] == temp_df6['Round'].unique().max()) & (temp_df6['Day'] == 1), 'Qty'] -= i[1]['Quantity']
 		
 		data_f = pd.concat([temp_df1, temp_df2, temp_df3, temp_df4, temp_df5, temp_df6])
 		return data_f
